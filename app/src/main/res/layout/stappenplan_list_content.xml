@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="stappenplan"
+            type="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+        <variable
+            name="clickListener"
+            type="hogent.bachelor.stappenplanappbase.ui.start.PlanListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        style="@style/cardView1"
+        android:onClick="@{() -> clickListener.onClick(stappenplan)}"
+        app:cardBackgroundColor="@color/colorRed"
+        app:cardCornerRadius="4dp"
+        android:width="1dp"
+        android:color="@color/colorRedAccent">
+
+        <LinearLayout
+            style="@style/linearLayList">
+
+            <TextView
+                android:id="@+id/naam_string"
+                style="@style/ListItems1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/beschrijving_string"
+                style="@style/ListItems1" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

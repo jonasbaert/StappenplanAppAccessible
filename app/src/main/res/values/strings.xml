@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">StappenplanAppBase</string>
+    <string name="stappenplannen">Stappenplannen</string>
+    <string name="stappen">Stappen</string>
+    <string name="naamStappenplan">Naam van stappenplan</string>
+    <string name="beschrijvingStappenplan">Beschrijving</string>
+    <string name="terug">Back</string>
+    <string name="bevestig">OK</string>
+    <string name="edit">Edit</string>
+    <string name="uitlegStap">Geef meer uitleg:</string>
+    <string name="naamStap">Beschrijf kort de stap:</string>
+    <string name="stapNummer">De hoeveelste stap is dit?</string>
+    <string name="image">Voeg een foto toe</string>
+    <string name="kiesImage">Kies een foto</string>
+    <string name="video">Voeg video toe</string>
+    <string name="kiesVideo">Kies een video</string>
+    <string name="upload">Upload foto</string>
+    <string name="uploadvid">Upload video</string>
+    <string name="kiesAudio">Kies een audiofragment</string>
+    <string name="uploadAudio">Upload audio</string>
+    <string name="video_text">Video\'s</string>
+    <string name="image_text">Afbeeldingen</string>
+</resources>

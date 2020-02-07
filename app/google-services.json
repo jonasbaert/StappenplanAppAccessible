@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "478678980863",
+    "firebase_url": "https://stappenplanapp.firebaseio.com",
+    "project_id": "stappenplanapp",
+    "storage_bucket": "stappenplanapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478678980863:android:ccd7e8c2af3509fb54d4ca",
+        "android_client_info": {
+          "package_name": "hogent.bachelor.stappenplanappbase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478678980863-rtbv2pj48f3raa7pt6ok09k5ef94k5i2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApbChX1Cs1gMoglP9uf3WlU5aB80bA_P8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478678980863-rtbv2pj48f3raa7pt6ok09k5ef94k5i2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

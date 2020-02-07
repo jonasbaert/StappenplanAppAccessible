@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="hogent.bachelor.stappenplanappbase.ui.modifyStappenplan.ModifyStappenplanViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/constLay1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan">
+
+            <LinearLayout style="@style/linearLay1">
+
+                <TextView
+                    android:id="@+id/title_naam"
+                    style="@style/TitleStyle1" />
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/naamStappenplan" />
+
+                <EditText
+                    android:id="@+id/edit_naam"
+                    style="@style/EditViewStyle1" />
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/beschrijvingStappenplan" />
+
+                <EditText
+                    android:id="@+id/edit_beschrijving"
+                    style="@style/EditViewStyle1"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|left"
+                    android:lines="6"
+                    android:minLines="4"
+                    android:maxLines="10"
+                    android:scrollbars="vertical"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_modify_stappenplan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/colorWhite"
+            app:itemTextColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

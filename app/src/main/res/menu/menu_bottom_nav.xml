@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="hogent.bachelor.stappenplanappbase.MainActivity">
+    <item
+        android:id="@+id/action_back"
+        android:icon="@drawable/ic_arrow_back_white_24dp"
+        android:title="@string/terug" />
+
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:title="@string/edit" />
+</menu>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="hogent.bachelor.stappenplanappbase.ui.modifyStap.ModifyStapViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/constLay1">
+
+
+        <ScrollView
+            android:id="@+id/scroll_view_modify_stap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stap">
+
+            <LinearLayout style="@style/linearLay1">
+
+                <TextView
+                    android:id="@+id/stap_title_naam"
+                    style="@style/TitleStyle1" />
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/naamStap" />
+
+                <EditText
+                    android:id="@+id/edit_stap_naam"
+                    style="@style/EditViewStyle1" />
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/uitlegStap" />
+
+                <EditText
+                    android:id="@+id/edit_uitleg"
+                    style="@style/EditViewStyle1"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|left"
+                    android:lines="6"
+                    android:minLines="4"
+                    android:maxLines="10"
+                    android:scrollbars="vertical"/>
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/stapNummer" />
+
+                <EditText
+                    android:id="@+id/edit_stap_nummer"
+                    android:inputType="number"
+                    style="@style/EditViewStyle1" />
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/image" />
+
+                <ImageView
+                    android:id="@+id/image_preview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_image_grey_24dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"/>
+
+                <Button
+                    android:id="@+id/btn_choose_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kiesImage" />
+
+                <Button
+                    android:id="@+id/btn_upload_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload" />
+
+                <TextView
+                    android:id="@+id/video_url_preview"
+                    style="@style/TextStyle1"
+                    android:text="Hier komt de url van de video"
+                    android:layout_gravity="center" />
+
+                <Button
+                    android:id="@+id/btn_choose_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kiesVideo"/>
+
+                <Button
+                    android:id="@+id/btn_upload_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uploadvid"
+                    android:layout_marginBottom="60dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_modify_stap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/colorWhite"
+            app:itemTextColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

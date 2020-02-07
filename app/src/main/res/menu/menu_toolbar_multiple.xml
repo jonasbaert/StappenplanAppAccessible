@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title=""
+        android:id="@+id/action_to_resetCheckedStappen"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:title=""
+        android:id="@+id/action_to_modifyFragment"
+        android:icon="@drawable/ic_add_white_24dp"
+        app:showAsAction="always"/>
+
+</menu>

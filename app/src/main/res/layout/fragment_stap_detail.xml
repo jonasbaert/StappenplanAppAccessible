@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="hogent.bachelor.stappenplanappbase.ui.stapDetail.StapDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/constLay1">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_stap_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/lin_lay_stap_detail"
+                style="@style/linearLay1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/stap_naam"
+                    style="@style/TitleStyle1"
+                    android:text="@{viewmodel.numberAndName}" />
+
+                <TextView
+                    android:id="@+id/stap_uitleg"
+                    style="@style/TextStyle1"
+                    android:text="@{viewmodel.stap.uitleg}" />
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_images"
+                    style="@style/linearLay1">
+
+                    <TextView
+                        android:id="@+id/titlePhotos"
+                        style="@style/TitleStyle2"
+                        android:text="@string/image_text" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/image_list"
+                        style="@style/recyclerViewStyle2"
+                        tools:listitem="@layout/image_list_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_lay_videos"
+                    style="@style/linearLay1">
+
+                    <TextView
+                        android:id="@+id/titleVideos"
+                        style="@style/TitleStyle2"
+                        android:text="@string/video_text" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/video_list"
+                        style="@style/recyclerViewStyle2"
+                        tools:listitem="@layout/video_list_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_stap_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="0dp"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/colorWhite"
+            app:itemTextColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_bottom_nav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
