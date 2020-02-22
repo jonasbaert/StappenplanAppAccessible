@@ -10,10 +10,22 @@
         android:label="StartFragment"
         tools:layout="@layout/fragment_start">
         <action
-            android:id="@+id/action_startFragment_to_stappenplanDetailFragment"
-            app:destination="@id/stappenplanDetailFragment" />
+            android:id="@+id/action_startFragment_to_stappenplannenFragment"
+            app:destination="@id/stappenplannenFragment" />
         <action
             android:id="@+id/action_startFragment_to_modifyStappenplanFragment"
+            app:destination="@+id/modifyStappenplanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stappenplannenFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.stappenplannen.StappenplannenFragment"
+        android:label="StappenplannenFragment"
+        tools:layout="@layout/fragment_stappenplannen">
+        <action
+            android:id="@+id/action_stappenplannenFragment_to_stappenplanDetailFragment"
+            app:destination="@id/stappenplanDetailFragment" />
+        <action
+            android:id="@+id/action_stappenplannenFragment_to_modifyStappenplanFragment"
             app:destination="@+id/modifyStappenplanFragment" />
     </fragment>
     <fragment
@@ -32,7 +44,7 @@
             app:destination="@+id/modifyStapFragment" />
         <action
             android:id="@+id/action_stappenplanDetailFragment_to_startFragment"
-            app:destination="@+id/startFragment" />
+            app:destination="@+id/stappenplannenFragment" />
         <action
             android:id="@+id/action_stappenplanDetailFragment_to_modifyStappenplanFragment"
             app:destination="@+id/modifyStappenplanFragment" />

@@ -17,6 +17,8 @@ import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
 import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp
 import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp.UnderlayButtonClickListener
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import hogent.bachelor.stappenplanappaccessible.ui.stappenplannen.StappenplannenViewModel
+import hogent.bachelor.stappenplanappaccessible.ui.stappenplannen.StappenplannenViewModelFactory
 
 
 class StartFragment : Fragment() {
@@ -35,82 +37,25 @@ class StartFragment : Fragment() {
 
         val app = requireNotNull(this.activity).application
 
-        //Init viewModel
-        val dataSource = StappenplanDatabase.getInstance(app).stappenplanDao
-        val viewModelFactory = StartViewModelFactory(dataSource, app)
+        val viewModelFactory = StartViewModelFactory(app)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(StartViewModel::class.java)
         binding.viewModel = viewModel
 
-        //Manager + adapter
-        val manager = LinearLayoutManager(activity)
-        binding.stappenplanList.layoutManager = manager
-
-        val adapter = StappenplanRecyclerAdapter(PlanListener {
-            stappenplan -> viewModel.onStappenplanClicked(stappenplan)
-        })
-
-        object : SwipeHelp(activity, binding.stappenplanList, false) {
-            override fun instantiateUnderlayButton(viewHolder: RecyclerView.ViewHolder?, underlayButtons: MutableList<UnderlayButton>?) {
-
-                //adding first button
-                underlayButtons?.add(
-                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete_black_24dp),
-                        Color.parseColor("#FF3C30"), 50, 40, 50, 40, Color.parseColor("#ffffff"),
-
-                        UnderlayButtonClickListener { pos: Int ->
-                            //Perform click operation on button1 at given pos
-                            viewModel.deleteStappenplan(adapter!!.returnItem(pos))
-                            adapter!!.notifyItemRemoved(pos)
-                        }
-                    ))
-                underlayButtons?.add(
-                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_create_black_24dp),
-                        Color.parseColor("#FF9502"), 50, 40, 50, 40, Color.parseColor("#ffffff"),
-
-                        UnderlayButtonClickListener { pos: Int ->
-                            //Perform click operation on button2 at given pos
-                            viewModel.onModifyStappenplanClicked(adapter!!.returnItem(pos))
-                        }
-                    ))
-            }
+        binding.btnToStappenplannen.setOnClickListener {
+            this.findNavController().navigate(
+                StartFragmentDirections
+                    .actionStartFragmentToStappenplannenFragment())
         }
 
-        binding.stappenplanList.adapter = adapter
-
-        viewModel.plannen.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
-                adapter.notifyDataSetChanged()
-            }
-        })
-
-        viewModel.navigateToModifyStappenplan.observe(this, Observer { stappenplan ->
-            stappenplan?.let {
-                this.findNavController().navigate(
-                    StartFragmentDirections
-                    .actionStartFragmentToModifyStappenplanFragment(stappenplan))
-                viewModel.onModifyStappenlanNavigated()
-            }
-        })
-
-        viewModel.navigateToStappenplanDetail.observe(this, Observer { stappenplan ->
-            stappenplan?.let {
-                this.findNavController().navigate(
-                    StartFragmentDirections
-                    .actionStartFragmentToStappenplanDetailFragment(stappenplan))
-                viewModel.onStappenplanNavigated()
-            }
-        })
+        binding.btnToCreateStappenplan.setOnClickListener {
+            this.findNavController().navigate(
+                StartFragmentDirections
+                    .actionStartFragmentToModifyStappenplanFragment(Stappenplan(0, "", "", emptyList(), false)))
+            viewModel.onModifyStappenlanNavigated()
+        }
 
         binding.lifecycleOwner = this
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_toolbar, menu)
-        menu.findItem(R.id.action_to_modifyFragment).isVisible = true
-
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

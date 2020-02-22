@@ -9,18 +9,18 @@
     </style>
 
     <style name="TitleStyle1">
-        <item name="android:textSize">28dp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">15dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
     </style>
 
     <style name="TitleStyle2">
-        <item name="android:textSize">22dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
@@ -30,7 +30,7 @@
     </style>
 
     <style name="ListItems1">
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -45,16 +45,16 @@
 
     <style name="cardView1">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">80dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
     <style name="linearLayList">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">80dp</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingTop">29dp</item>
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">12dp</item>
@@ -94,7 +94,7 @@
     </style>
 
     <style name="TextStyle1">
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
@@ -106,7 +106,7 @@
     </style>
 
     <style name="TextStyle2">
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
@@ -122,6 +122,22 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ButtonStyle1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:background">@drawable/my_button_one</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxWidth">350dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:radius">4dp</item>
+        <item name="android:focusable">true</item>
     </style>
 </resources>

@@ -20,4 +20,12 @@
     <string name="uploadAudio">Upload audio</string>
     <string name="video_text">Video\'s</string>
     <string name="image_text">Afbeeldingen</string>
+    <string name="home">Home</string>
+    <string name="jouw_stappenplannen">Jouw stappenplannen</string>
+    <string name="maak_stappenplan">Creëer een stappenplan</string>
+
+    <!-- Content Description -->
+    <string name="btn_to_stappenplannen">Ga naar jouw lijst van stappenplannen</string>
+    <string name="btn_to_create_stappenplan">Creëer een nieuw stappenplan</string>
+
 </resources>

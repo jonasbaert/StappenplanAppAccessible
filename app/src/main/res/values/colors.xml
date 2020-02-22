@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="ic_launcher_background">#A63125</color>
     <color name="colorPrimary">#EE3DC206</color>
     <color name="colorPrimaryDark">#1F3A07</color>
     <color name="colorAccent">#478F1D</color>
@@ -8,4 +9,6 @@
     <color name="colorBlack">#000000</color>
     <color name="colorRedAccent">#921616</color>
     <color name="colorYellowish">#E6CF08</color>
+    <color name="colorRedLight">#F51515</color>
+    <color name="colorRedAccentDark">#831919</color>
 </resources>

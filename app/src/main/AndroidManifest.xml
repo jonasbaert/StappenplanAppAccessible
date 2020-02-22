@@ -16,10 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="hogent.bachelor.stappenplanappaccessible.MainActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan">
+        <activity android:name="hogent.bachelor.stappenplanappaccessible.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

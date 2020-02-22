@@ -1,4 +1,4 @@
-package hogent.bachelor.stappenplanappaccessible.ui.start
+package hogent.bachelor.stappenplanappaccessible.ui.stappenplannen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -28,7 +28,6 @@ class StappenplanRecyclerAdapter(val clickListener: PlanListener) : ListAdapter<
             binding.stappenplan = item
             binding.clickListener = clickListener
             binding.naamString.text = item.naam
-            binding.beschrijvingString.text = item.beschrijving.substring(0, 40) + "..."
         }
 
         companion object {
