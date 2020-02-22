@@ -6,10 +6,10 @@
     <data>
         <variable
             name="stappenplan"
-            type="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            type="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <variable
             name="clickListener"
-            type="hogent.bachelor.stappenplanappbase.ui.start.PlanListener" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.start.PlanListener" />
     </data>
 
     <androidx.cardview.widget.CardView

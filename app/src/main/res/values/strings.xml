@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StappenplanAppBase</string>
+    <string name="app_name">StappenplanAppAccessible</string>
     <string name="stappenplannen">Stappenplannen</string>
     <string name="stappen">Stappen</string>
     <string name="naamStappenplan">Naam van stappenplan</string>

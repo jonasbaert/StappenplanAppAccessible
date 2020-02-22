@@ -6,7 +6,7 @@
     app:startDestination="@id/startFragment">
     <fragment
         android:id="@+id/startFragment"
-        android:name="hogent.bachelor.stappenplanappbase.ui.start.StartFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.start.StartFragment"
         android:label="StartFragment"
         tools:layout="@layout/fragment_start">
         <action
@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/stappenplanDetailFragment"
-        android:name="hogent.bachelor.stappenplanappbase.ui.stappenplanDetail.StappenplanDetailFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail.StappenplanDetailFragment"
         android:label="StappenplanDetailFragment"
         tools:layout="@layout/fragment_stappenplan_detail">
         <argument
             android:name="stappenplan"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <action
             android:id="@+id/action_stappenplanDetailFragment_to_stapDetailFragment"
             app:destination="@id/stapDetailFragment" />
@@ -39,15 +39,15 @@
     </fragment>
     <fragment
         android:id="@+id/stapDetailFragment"
-        android:name="hogent.bachelor.stappenplanappbase.ui.stapDetail.StapDetailFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.stapDetail.StapDetailFragment"
         android:label="StapDetailFragment"
         tools:layout="@layout/fragment_stap_detail">
         <argument
             android:name="stap"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stap" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stap" />
         <argument
             android:name="stappenplan"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <action
             android:id="@+id/action_stapDetailFragment_to_modifyStapFragment"
             app:destination="@+id/modifyStapFragment" />
@@ -57,27 +57,27 @@
     </fragment>
     <fragment
         android:id="@+id/modifyStappenplanFragment"
-        android:name="hogent.bachelor.stappenplanappbase.ui.modifyStappenplan.ModifyStappenplanFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.modifyStappenplan.ModifyStappenplanFragment"
         android:label="ModifyStappenplanFragment"
         tools:layout="@layout/fragment_modify_stappenplan">
         <argument
             android:name="stappenplan"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <action
             android:id="@+id/action_back_to_startFragment"
             app:destination="@+id/startFragment"/>
     </fragment>
     <fragment
         android:id="@+id/modifyStapFragment"
-        android:name="hogent.bachelor.stappenplanappbase.ui.modifyStap.ModifyStapFragment"
+        android:name="hogent.bachelor.stappenplanappaccessible.ui.modifyStap.ModifyStapFragment"
         android:label="ModifyStapFragment"
         tools:layout="@layout/fragment_modify_stap">
         <argument
             android:name="stap"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stap" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stap" />
         <argument
             android:name="stappenplan"
-            app:argType="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <action
             android:id="@+id/action_back_again_to_stappenplanDetailFragment"
             app:destination="@+id/stappenplanDetailFragment"/>

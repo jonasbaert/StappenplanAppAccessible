@@ -6,7 +6,7 @@
     <data>
         <variable
             name="video"
-            type="hogent.bachelor.stappenplanappbase.domain.Video" />
+            type="hogent.bachelor.stappenplanappaccessible.domain.Video" />
     </data>
 
     <androidx.cardview.widget.CardView

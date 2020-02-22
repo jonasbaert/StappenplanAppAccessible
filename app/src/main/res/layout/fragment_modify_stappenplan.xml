@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="hogent.bachelor.stappenplanappbase.ui.modifyStappenplan.ModifyStappenplanViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.modifyStappenplan.ModifyStappenplanViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

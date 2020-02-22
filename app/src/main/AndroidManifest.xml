@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hogent.bachelor.stappenplanappbase"
+    package="hogent.bachelor.stappenplanappaccessible"
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="hogent.bachelor.stappenplanappbase.MainActivity"
+        <activity android:name="hogent.bachelor.stappenplanappaccessible.MainActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan">
