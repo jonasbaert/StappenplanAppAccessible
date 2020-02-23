@@ -188,7 +188,7 @@ class StapDetailFragment : Fragment(){
                 isCurrentlyActive: Boolean
             ) {
                 var colorBackground = Color.parseColor("#FF3C30")
-                var deleteIcon: Drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_black_24dp)!!
+                var deleteIcon: Drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_white_24dp)!!
                 val inWidth = deleteIcon.intrinsicWidth
                 val inHeight = deleteIcon.intrinsicHeight
                 val background = ColorDrawable()

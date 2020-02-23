@@ -33,7 +33,7 @@ class ImageDetailFragment : Fragment() {
         if(image.altText != null || image.altText != "") {
             binding.altImage.text = image.altText
         }
-        
+
         Glide.with(requireContext()).load(image.imageUrl).into(binding.imageFromDb)
 
         binding.lifecycleOwner = this

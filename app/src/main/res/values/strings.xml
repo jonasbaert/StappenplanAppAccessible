@@ -28,5 +28,10 @@
     <!-- Content Description -->
     <string name="btn_to_stappenplannen">Ga naar jouw lijst van stappenplannen</string>
     <string name="btn_to_create_stappenplan">Creëer een nieuw stappenplan</string>
+    <string name="image_content_describtion">Dit is een afbeelding die is toegevoegd als extra middel om een stap succesvol te voltooien</string>
+    <string name="back_to">Keer terug naar vorig scherm</string>
+    <string name="accept">Sla de wijzigingen op en keer terug naar vorig scherm</string>
+    <string name="delete">Verwijder</string>
+    <string name="loading">Video is aan het laden</string>
 
 </resources>

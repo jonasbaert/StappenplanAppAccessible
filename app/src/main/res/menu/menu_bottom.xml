@@ -5,10 +5,12 @@
     <item
         android:id="@+id/action_back"
         android:icon="@drawable/ic_arrow_back_white_24dp"
-        android:title="@string/terug" />
+        android:title="@string/terug"
+        android:contentDescription="@string/back_to"/>
 
     <item
         android:id="@+id/action_accept"
         android:icon="@drawable/ic_check_white_24dp"
-        android:title="@string/bevestig" />
+        android:title="@string/bevestig"
+        android:contentDescription="@string/accept"/>
 </menu>

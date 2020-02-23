@@ -16,6 +16,7 @@
         <TextView
             android:id="@+id/title_of_video"
             style="@style/TitleStyle1"
+            android:layout_marginBottom="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -31,16 +32,19 @@
 
             <VideoView
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/video_from_database"/>
+                android:id="@+id/video_from_database"
+                android:focusable="true"/>
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:focusable="true"
+                android:contentDescription="@string/loading" />
         </RelativeLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -52,7 +56,8 @@
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_empty" />
+            app:menu="@menu/menu_bottom_nav_extra"
+            android:focusable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

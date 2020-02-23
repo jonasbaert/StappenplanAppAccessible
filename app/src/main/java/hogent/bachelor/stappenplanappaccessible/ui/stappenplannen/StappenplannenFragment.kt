@@ -55,7 +55,7 @@ class StappenplannenFragment : Fragment() {
 
                 //adding first button
                 underlayButtons?.add(
-                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete_black_24dp),
+                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete_white_24dp),
                         Color.parseColor("#FF3C30"), 50, 40, 50, 40, Color.parseColor("#ffffff"),
 
                         UnderlayButtonClickListener { pos: Int ->
