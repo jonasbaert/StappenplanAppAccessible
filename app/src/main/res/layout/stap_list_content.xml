@@ -16,8 +16,9 @@
         android:id="@+id/cardViewStap"
         style="@style/cardView1"
         android:onClick="@{() -> clickListener.onClick(stap)}"
-        app:cardBackgroundColor="@color/colorRed"
-        app:cardCornerRadius="4dp">
+        app:cardBackgroundColor="@color/colorSecundary"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="1dp">
 
         <CheckBox
             android:scaleX="3"
@@ -29,11 +30,12 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:background="@drawable/my_button_one">
+            android:background="@drawable/card_edge">
             <LinearLayout
                 style="@style/linearLayList"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/my_button_two"
+                android:layout_marginLeft="80dp">
 
                 <TextView
                     android:id="@+id/stap_naam_string"

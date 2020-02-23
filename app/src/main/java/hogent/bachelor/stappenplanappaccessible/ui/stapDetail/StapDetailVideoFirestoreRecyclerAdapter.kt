@@ -26,15 +26,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class StapDetailVideoFirestoreRecyclerAdapter internal constructor(options: FirestoreRecyclerOptions<Video>, var stap: Stap, var context: Context, var stappenplanDao: StappenplanDao):
+class StapDetailVideoFirestoreRecyclerAdapter internal constructor(options: FirestoreRecyclerOptions<Video>, var stap: Stap, val clickListener: VideoListener):
     FirestoreRecyclerAdapter<Video, StapDetailVideoFirestoreRecyclerAdapter.StapDetailVideoViewHolder>(options){
-
-    private var firestoreRepository = FirestoreRepository()
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + viewModelJob)
-    private var stappenplanRepository = StappenplanRepository(stappenplanDao)
-    private var firebaseStore : FirebaseStorage? = null
-    private var videoRef : StorageReference? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StapDetailVideoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -51,83 +44,18 @@ class StapDetailVideoFirestoreRecyclerAdapter internal constructor(options: Fire
             FirestoreRepository().updateVideo(video)
         }
 
-        holder.setStapVideo(video)
-
-        holder.deleteVideo(position)
+        holder.setStapVideo(video, clickListener)
     }
 
     inner class StapDetailVideoViewHolder internal constructor(private val binding: VideoListContentBinding) : RecyclerView.ViewHolder(binding.root) {
-        var mediaController: MediaController? = null
-
-        internal fun setStapVideo(item: Video) {
+        internal fun setStapVideo(item: Video, clickListener: VideoListener) {
             binding.video = item
-            Log.d("ADAPTER_IMAGES", "Url = ${item.videoUrl}")
-            mediaController = MediaController(context)
-            binding.videoFromDatabase.setMediaController(mediaController)
-            var uri = Uri.parse(item.videoUrl)
-            binding.videoFromDatabase.setVideoURI(uri)
-            binding.videoFromDatabase.requestFocus()
-            binding.videoFromDatabase.start()
-            binding.progressBar.visibility = View.VISIBLE
-            binding.videoFromDatabase.setOnPreparedListener {mp ->
-                mp.start()
-                mp.setOnVideoSizeChangedListener { mp, _, _ ->
-                    binding.progressBar.visibility = View.GONE
-                    mp.start()
-                }
-            }
-        }
-
-        fun deleteVideo(pos: Int){
-            binding.btnDeleteVideo.setOnClickListener {
-                var vid = getItem(pos)
-                firebaseStore = FirebaseStorage.getInstance()
-                videoRef = firebaseStore!!.getReferenceFromUrl(vid.videoUrl)
-                if(videoRef != null){
-                    videoRef!!.delete().addOnSuccessListener {
-                        coroutineScope.launch {
-                            try {
-                                stappenplanRepository.updateAantalVideosFromStap(
-                                    stap.id,
-                                    stap.aantalVideos - 1
-                                )
-                            } catch (e: Exception){
-                                e.printStackTrace()
-                            }
-                        }
-                        firestoreRepository.deleteVideo(vid.id)
-                        Toast.makeText(
-                            context,
-                            "Succesvol verwijderd uit db",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }.addOnFailureListener{
-                        Toast.makeText(
-                            context,
-                            "Probleem bij verwijderen uit db",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-                else {
-                    coroutineScope.launch {
-                        try {
-                            stappenplanRepository.updateAantalVideosFromStap(
-                                stap.id,
-                                stap.aantalVideos - 1
-                            )
-                        } catch (e: Exception){
-                            e.printStackTrace()
-                        }
-                    }
-                    firestoreRepository.deleteVideo(vid.id)
-                    Toast.makeText(
-                        context,
-                        "Succesvol verwijderd uit db",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+            binding.clickListener = clickListener
+            binding.naamFromVideo.text = item.naam
         }
     }
+}
+
+class VideoListener(val clickListener: (video: Video) -> Unit){
+    fun onClick(video: Video) = clickListener(video)
 }

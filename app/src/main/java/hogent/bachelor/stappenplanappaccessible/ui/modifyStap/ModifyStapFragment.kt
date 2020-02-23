@@ -3,12 +3,16 @@ package hogent.bachelor.stappenplanappaccessible.ui.modifyStap
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -24,6 +28,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import kotlinx.android.synthetic.main.custom_toast.*
+import kotlinx.android.synthetic.main.custom_toast_two.*
 import kotlinx.android.synthetic.main.fragment_modify_stap.*
 import java.io.IOException
 import java.util.*
@@ -45,6 +51,8 @@ class ModifyStapFragment : Fragment(){
     private var filePath2: Uri? = null
     private var firebaseStore : FirebaseStorage? = null
     private var storageReference: StorageReference? = null
+
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentModifyStapBinding = DataBindingUtil
@@ -78,20 +86,14 @@ class ModifyStapFragment : Fragment(){
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
-        binding.btnChooseImage.setOnClickListener{
+        progressBar = binding.progressBar
+
+        binding.btnUploadImage.setOnClickListener {
             launchGallery()
         }
 
-        binding.btnUploadImage.setOnClickListener {
-            uploadImage()
-        }
-
-        binding.btnChooseVideo.setOnClickListener {
-            launchVideo()
-        }
-
         binding.btnUploadVideo.setOnClickListener {
-            uploadVideo()
+            launchVideo()
         }
 
         binding.lifecycleOwner = this
@@ -121,40 +123,41 @@ class ModifyStapFragment : Fragment(){
                         var volgnummer = edit_stap_nummer.text
 
                         if (naam.isBlank() && uitleg.isBlank()) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Naam en beschrijving moeten ingevuld zijn!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+
+                            showToast("Naam en uitleg moeten ingevuld zijn!")
+
                         } else if (naam.isBlank()) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Naam moet ingevuld zijn!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+
+                            showToast("Naam moet ingevuld zijn")
+
                         } else if (uitleg.isBlank()) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Uitleg moet ingevuld zijn!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else if (naam.toString() == stap.stapNaam && uitleg.toString() == stap.uitleg && volgnummer.toString() == stap.volgnummer.toString() && !isFotoToegevoegd && !isVideoToegevoegd) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Wijzig eerst iets aan deze stap of keer terug",
-                                Toast.LENGTH_SHORT
-                            ).show()
+
+                            showToast("Meer uitleg moet ingevuld zijn")
+
+                        } else if (naam.toString() == stap.stapNaam
+                            && uitleg.toString() == stap.uitleg
+                            && volgnummer.toString() == stap.volgnummer.toString()
+                            && !isFotoToegevoegd && !isVideoToegevoegd) {
+
+                            showToast("Wijzig eerst iets aan deze stap of keer terug")
+
                         } else if (volgnummer.toString().toInt() > viewModel.getSize() + 1) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Geef een volgnummer tussen 1 en ${viewModel.getSize() + 1} in.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else if(naam.toString() != stap.stapNaam || uitleg.toString() != stap.uitleg || volgnummer.toString() != stap.volgnummer.toString() || isFotoToegevoegd || isVideoToegevoegd) {
+
+                            showToast("Geef een volgnummer tussen 1 en ${viewModel.getSize() + 1} in.")
+
+                        } else if(naam.toString() != stap.stapNaam
+                            || uitleg.toString() != stap.uitleg
+                            || volgnummer.toString() != stap.volgnummer.toString()
+                            || isFotoToegevoegd
+                            || isVideoToegevoegd) {
+
                             stap.stapNaam = naam.toString()
                             stap.uitleg = uitleg.toString()
 
-                            if(volgnummer.toString() != stap.volgnummer.toString() || volgnummer.toString().toInt() == 0 || volgnummer.toString().isBlank()) {
+                            if(volgnummer.toString() != stap.volgnummer.toString()
+                                || volgnummer.toString().toInt() == 0
+                                || volgnummer.toString().isBlank()) {
+
                                 var oudVolgnummer = stap.volgnummer
                                 var nieuwVolgnummer = volgnummer.toString().toInt()
 
@@ -218,6 +221,7 @@ class ModifyStapFragment : Fragment(){
                         filePath
                     )
                     image_preview.setImageBitmap(bitmap)
+                    uploadImage()
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
@@ -228,6 +232,7 @@ class ModifyStapFragment : Fragment(){
 
                 filePath2 = data.data
                 video_url_preview.text = filePath2.toString()
+                uploadVideo()
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -247,26 +252,27 @@ class ModifyStapFragment : Fragment(){
         startActivityForResult(Intent.createChooser(intent, "Kies een video"), PICK_VIDEO_REQUEST)
     }
 
-    private fun addUploadRecordToDb(uri: String){
-       viewModel.addUploadRecordToDb(uri).addOnSuccessListener { documentReference ->
-            Toast.makeText(requireContext(), "Foto is opgeslagen in de databank", Toast.LENGTH_LONG).show()
+    private fun addUploadRecordToDb(uri: String, naam: String, altText: String){
+        viewModel.addUploadRecordToDb(uri, naam, altText).addOnSuccessListener { documentReference ->
+            showToastSuccess("Foto is opgeslagen in de databank")
         }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error bij het opslaan naar de databank", Toast.LENGTH_LONG).show()
+                showToast("Error bij het opslaan naar de databank")
             }
     }
 
-    private fun addUploadVidRecordToDb(uri: String){
-        viewModel.addUploadVidRecordToDb(uri).addOnSuccessListener { documentReference ->
-            Toast.makeText(requireContext(), "Video is opgeslagen in de databank", Toast.LENGTH_LONG).show()
+    private fun addUploadVidRecordToDb(uri: String, naam: String){
+        viewModel.addUploadVidRecordToDb(uri, naam).addOnSuccessListener { documentReference ->
+            showToastSuccess("Video is opgeslagen in de databank")
         }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Error bij het opslaan naar de databank", Toast.LENGTH_LONG).show()
+                showToast("Error bij het opslaan naar de databank")
             }
     }
 
     private fun uploadImage() {
        if(filePath != null){
+            progressBar.visibility = View.VISIBLE
             val ref = storageReference?.child("images/" + UUID.randomUUID().toString())
             val uploadTask = ref?.putFile(filePath!!)
 
@@ -280,9 +286,11 @@ class ModifyStapFragment : Fragment(){
             })?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                    addUploadRecordToDb(downloadUri.toString())
+                    addUploadRecordToDb(downloadUri.toString(), "Naam van foto", "Een alt tekst bij een foto")
                     isFotoToegevoegd = true
                     stap.aantalImages = stap.aantalImages + 1
+
+                    progressBar.visibility = View.VISIBLE
                 } else {
                     // Handle failures
                 }
@@ -290,12 +298,13 @@ class ModifyStapFragment : Fragment(){
 
             }
         }else{
-            Toast.makeText(requireContext(), "Upload een image aub!", Toast.LENGTH_SHORT).show()
+           showToast("Upload een foto aub")
         }
     }
 
     private fun uploadVideo() {
         if(filePath2 != null){
+            progressBar.visibility = View.VISIBLE
             val ref = storageReference?.child("videos/" + UUID.randomUUID().toString())
             val uploadTask = ref?.putFile(filePath2!!)
 
@@ -309,9 +318,11 @@ class ModifyStapFragment : Fragment(){
             })?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                    addUploadVidRecordToDb(downloadUri.toString())
+                    addUploadVidRecordToDb(downloadUri.toString(), "Naam van video")
                     isVideoToegevoegd = true
                     stap.aantalVideos = stap.aantalVideos + 1
+
+                    progressBar.visibility = View.GONE
                 } else {
                     // Handle failures
                 }
@@ -320,7 +331,38 @@ class ModifyStapFragment : Fragment(){
             }
         }
         else {
-            Toast.makeText(requireContext(), "Upload een video aub!", Toast.LENGTH_SHORT).show()
+            val inflater = layoutInflater
+            val layout = inflater.inflate(R.layout.custom_toast, custom_toast_container)
+            val txt: TextView = layout.findViewById(R.id.toast_text)
+            showToast("Upload een video aub")
+        }
+    }
+
+    private fun showToast(text: String){
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast, custom_toast_container)
+        val txt: TextView = layout.findViewById(R.id.toast_text)
+
+        txt.text = text
+        with (Toast(requireContext())) {
+            setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
+        }
+    }
+
+    private fun showToastSuccess(text: String){
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast_two, custom_toast_container_success)
+        val txt: TextView = layout.findViewById(R.id.toast_text_success)
+
+        txt.text = text
+        with (Toast(requireContext())) {
+            setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
         }
     }
 }

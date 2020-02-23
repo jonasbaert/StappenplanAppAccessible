@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -62,11 +63,21 @@ class StapDetailFragment : Fragment(){
         val options = FirestoreRecyclerOptions.Builder<Image>()
                 .setQuery(viewModel.getImageUrlsFromStap(), Image::class.java).build()
 
-        adapterImage = StapDetailImageFirestoreRecyclerAdapter(options, stap.id.toString(), requireContext())
+        adapterImage = StapDetailImageFirestoreRecyclerAdapter(options, stap.id.toString(), ImageListener {
+            image -> viewModel.onImageClicked(image)
+        })
 
         binding.imageList.adapter = adapterImage
 
-        Log.d(TAG, "Aantal images + Id: ${stap.aantalImages} + ${stap.id}")
+        viewModel.navigateToImageDetail.observe(this, Observer { image ->
+            image?.let {
+                this.findNavController().navigate(
+                    StapDetailFragmentDirections
+                        .actionStapDetailFragmentToImageDetailFragment(image))
+                    viewModel.onImageNavigated()
+
+            }
+        })
 
         if (stap.aantalImages == 0) {
             binding.linLayImages.visibility = View.GONE
@@ -74,20 +85,26 @@ class StapDetailFragment : Fragment(){
             binding.linLayImages.visibility = View.VISIBLE
         }
 
-        val itemTouchHelperCallback = getItemTouchHelperCallback()
-
-        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(binding.imageList)
-
         val manager2 = LinearLayoutManager(activity)
 
         binding.videoList.layoutManager = manager2
         val optionsVideo = FirestoreRecyclerOptions.Builder<Video>()
             .setQuery(viewModel.getVideoFromStap(), Video::class.java).build()
 
-        adapterVideo = StapDetailVideoFirestoreRecyclerAdapter(optionsVideo, stap, requireContext(), dataSource)
+        adapterVideo = StapDetailVideoFirestoreRecyclerAdapter(optionsVideo, stap, VideoListener {
+            video -> viewModel.onVideoClicked(video)
+        })
 
         binding.videoList.adapter = adapterVideo
+
+        viewModel.navigateToVideoDetail.observe(this, Observer { video ->
+            video?.let {
+                this.findNavController().navigate(
+                    StapDetailFragmentDirections
+                        .actionStapDetailFragmentToVideoDetailFragment(video))
+                viewModel.onVideoNavigated()
+            }
+        })
 
         if(stap.aantalVideos == 0){
             binding.linLayVideos.visibility = View.GONE
@@ -119,6 +136,7 @@ class StapDetailFragment : Fragment(){
         }
     }
 
+    /*
     private fun getItemTouchHelperCallback(): ItemTouchHelper.SimpleCallback {
         return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
@@ -128,7 +146,7 @@ class StapDetailFragment : Fragment(){
             ): Boolean = false
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDirection: Int) {
-              /*  val pos = viewHolder.adapterPosition
+              *//*  val pos = viewHolder.adapterPosition
                 adapterImage!!.notifyItemRemoved(pos)
                 firebaseStore = FirebaseStorage.getInstance()
                 photoRef = firebaseStore!!.getReferenceFromUrl(adapterImage!!.getItem(pos).imageUrl)
@@ -156,7 +174,7 @@ class StapDetailFragment : Fragment(){
                         "Succesvol verwijderd uit db",
                         Toast.LENGTH_SHORT
                     ).show()
-                }*/
+                }*//*
 
             }
 
@@ -225,6 +243,7 @@ class StapDetailFragment : Fragment(){
             }
         }
     }
+    */
 
     override fun onStop() {
         super.onStop()

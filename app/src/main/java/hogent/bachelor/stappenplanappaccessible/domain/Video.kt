@@ -1,5 +1,7 @@
 package hogent.bachelor.stappenplanappaccessible.domain
 
-data class Video(var id: String, var videoUrl: String, var stapId: String) {
-    constructor(): this("", "", "")
+import java.io.Serializable
+
+data class Video(var id: String, var videoUrl: String, var stapId: String, var naam: String) : Serializable {
+    constructor(): this("", "", "", "")
 }

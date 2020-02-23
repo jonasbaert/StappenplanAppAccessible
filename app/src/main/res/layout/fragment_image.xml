@@ -6,38 +6,45 @@
     <data>
         <variable
             name="viewModel"
-            type="hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail.StappenplanDetailViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/constLay1"
         android:background="@color/colorSecundary">
+
         <TextView
-            android:id="@+id/stappenplan_naam"
+            android:id="@+id/title_of_image"
             style="@style/TitleStyle1"
-            android:text="@{viewModel.stappenplan.naam}"
+            android:text="@string/stappenplannen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/stappenplan_beschrijving"
-            style="@style/TextStyle1"
-            android:text="@{viewModel.stappenplan.beschrijving}"
-            app:layout_constraintStart_toStartOf="@+id/stappenplan_naam"
-            app:layout_constraintTop_toBottomOf="@+id/stappenplan_naam"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/stap_list"
-            style="@style/recyclerViewStyle1"
-            tools:listitem="@layout/stap_list_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stappenplan_beschrijving"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_stappenplan_detail"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_of_video">
+
+            <TextView
+                android:id="@+id/alt_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/image_from_db"/>
+
+        </RelativeLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_stappenplan_detail"
+            android:id="@+id/bottom_navigation_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -45,7 +52,7 @@
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_nav" />
+            app:menu="@menu/menu_bottom_empty" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

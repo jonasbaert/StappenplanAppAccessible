@@ -11,8 +11,9 @@ import hogent.bachelor.stappenplanappaccessible.domain.Image
 import hogent.bachelor.stappenplanappaccessible.firestore.FirestoreRepository
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import hogent.bachelor.stappenplanappaccessible.domain.Video
 
-class StapDetailImageFirestoreRecyclerAdapter internal constructor(options: FirestoreRecyclerOptions<Image>, var stapId: String, var context: Context):
+class StapDetailImageFirestoreRecyclerAdapter internal constructor(options: FirestoreRecyclerOptions<Image>, var stapId: String, val clickListener: ImageListener):
     FirestoreRecyclerAdapter<Image, StapDetailImageFirestoreRecyclerAdapter.StapDetailViewHolder>(options){
 
     var itemcount = 0
@@ -31,11 +32,7 @@ class StapDetailImageFirestoreRecyclerAdapter internal constructor(options: Fire
             image.stapId = stapId
             FirestoreRepository().updateImage(image)
         }
-        holder.setStapImage(image)
-    }
-
-    fun getSize(): Int{
-        return itemcount
+        holder.setStapImage(image, clickListener)
     }
 
     override fun onDataChanged() {
@@ -44,9 +41,15 @@ class StapDetailImageFirestoreRecyclerAdapter internal constructor(options: Fire
     }
 
     inner class StapDetailViewHolder internal constructor(private val binding: ImageListContentBinding) : RecyclerView.ViewHolder(binding.root) {
-        internal fun setStapImage(item: Image) {
+        internal fun setStapImage(item: Image, clickListener: ImageListener) {
             binding.image = item
-            Glide.with(context).load(item.imageUrl).into(binding.imageFromDb)
+            binding.clickListener = clickListener
+            binding.imageName.text = item.naam
         }
     }
+}
+
+
+class ImageListener(val clickListener: (image: Image) -> Unit){
+    fun onClick(image: Image) = clickListener(image)
 }

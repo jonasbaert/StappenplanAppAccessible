@@ -50,7 +50,7 @@ class StappenplannenFragment : Fragment() {
             stappenplan -> viewModel.onStappenplanClicked(stappenplan)
         })
 
-        object : SwipeHelp(activity, binding.stappenplanList, false) {
+        /*object : SwipeHelp(activity, binding.stappenplanList, false) {
             override fun instantiateUnderlayButton(viewHolder: RecyclerView.ViewHolder?, underlayButtons: MutableList<UnderlayButton>?) {
 
                 //adding first button
@@ -74,7 +74,7 @@ class StappenplannenFragment : Fragment() {
                         }
                     ))
             }
-        }
+        }*/
 
         binding.stappenplanList.adapter = adapter
 

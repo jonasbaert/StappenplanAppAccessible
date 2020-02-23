@@ -11,7 +11,7 @@ class FirestoreRepository {
     var firestoreDB = FirebaseFirestore.getInstance()
 
     fun saveImage(image: Image){
-        firestoreDB.collection("images").add(image)
+        firestoreDB.collection("imagesplus").add(image)
             .addOnSuccessListener { documentReference ->
             Log.d(TAG, "DocumentSnapshot written with ID : ${documentReference.id}")
         }
@@ -21,44 +21,47 @@ class FirestoreRepository {
     }
 
     fun getImageUrlsFromStap(stapId: String): Query{
-        return firestoreDB.collection("images").whereEqualTo("stapId", stapId)
+        return firestoreDB.collection("imagesplus").whereEqualTo("stapId", stapId)
     }
 
     fun deleteImage(imageId: String){
-        firestoreDB.collection("images").document(imageId).delete()
+        firestoreDB.collection("imagesplus").document(imageId).delete()
     }
 
     fun updateImage(image: Image) {
-        firestoreDB.collection("images").document(image.id).set(image)
+        firestoreDB.collection("imagesplus").document(image.id).set(image)
     }
 
-    fun addUploadRecordToDb(uri: String, stapId: String): Task<DocumentReference>{
+    fun addUploadRecordToDb(uri: String, stapId: String, naam: String, altText: String): Task<DocumentReference>{
         val data = HashMap<String, Any>()
         data["imageUrl"] = uri
         data["stapId"] = stapId
+        data["naam"] = naam
+        data["altText"] = altText
 
-        var docRef = firestoreDB.collection("images")
+        var docRef = firestoreDB.collection("imagesplus")
         return docRef.add(data)
     }
 
     fun getVideoUrlFromStap(stapId: String): Query {
-        return firestoreDB.collection("videos").whereEqualTo("stapId", stapId)
+        return firestoreDB.collection("videosplus").whereEqualTo("stapId", stapId)
     }
 
     fun deleteVideo(videoId: String){
-        firestoreDB.collection("videos").document(videoId).delete()
+        firestoreDB.collection("videosplus").document(videoId).delete()
     }
 
     fun updateVideo(video: Video) {
-        firestoreDB.collection("videos").document(video.id).set(video)
+        firestoreDB.collection("videosplus").document(video.id).set(video)
     }
 
-    fun addUploadVidRecordToDb(uri: String, stapId: String): Task<DocumentReference>{
+    fun addUploadVidRecordToDb(uri: String, stapId: String, naam: String): Task<DocumentReference>{
         val data = HashMap<String, Any>()
         data["videoUrl"] = uri
         data["stapId"] = stapId
+        data["naam"] = naam
 
-        var docRef = firestoreDB.collection("videos")
+        var docRef = firestoreDB.collection("videosplus")
         return docRef.add(data)
     }
 }

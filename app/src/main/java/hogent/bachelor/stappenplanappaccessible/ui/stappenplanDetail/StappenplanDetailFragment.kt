@@ -63,7 +63,7 @@ class StappenplanDetailFragment : Fragment(){
             }
         })
 
-        object : SwipeHelp(activity, binding.stapList, false) {
+/*        object : SwipeHelp(activity, binding.stapList, false) {
             override fun instantiateUnderlayButton(viewHolder: RecyclerView.ViewHolder?, underlayButtons: MutableList<UnderlayButton>?) {
 
                 //adding first button
@@ -88,7 +88,7 @@ class StappenplanDetailFragment : Fragment(){
                         }
                     ))
             }
-        }
+        }*/
 
         viewModel.navigateToStapDetail.observe(this, Observer { stap ->
             stap?.let {

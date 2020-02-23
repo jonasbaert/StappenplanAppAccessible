@@ -66,7 +66,7 @@ class DummyDataSource {
                 uitleg = "Dit is de tweede stap",
                 isGedaan = false,
                 isAlInDb = true,
-                aantalImages = 1,
+                aantalImages = 0,
                 aantalVideos = 0
             ),
             Stap(

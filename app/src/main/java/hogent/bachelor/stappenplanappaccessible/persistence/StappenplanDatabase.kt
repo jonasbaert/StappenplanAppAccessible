@@ -14,7 +14,7 @@ import hogent.bachelor.stappenplanappaccessible.persistence.entities.Stappenplan
 @Database(
     entities = [
         StappenplanEntity::class, StapEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class StappenplanDatabase : RoomDatabase() {

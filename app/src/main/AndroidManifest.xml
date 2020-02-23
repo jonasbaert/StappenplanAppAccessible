@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hogent.bachelor.stappenplanappaccessible"
-    xmlns:dist="http://schemas.android.com/apk/distribution">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="hogent.bachelor.stappenplanappaccessible">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="hogent.bachelor.stappenplanappaccessible.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

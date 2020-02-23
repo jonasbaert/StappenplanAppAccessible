@@ -11,7 +11,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/constLay1">
+        style="@style/constLay1"
+        android:background="@color/colorSecundary">
 
         <TextView
             android:id="@+id/title_of_page"

@@ -7,9 +7,10 @@
     <string name="terug">Back</string>
     <string name="bevestig">OK</string>
     <string name="edit">Edit</string>
-    <string name="uitlegStap">Geef meer uitleg:</string>
-    <string name="naamStap">Beschrijf kort de stap:</string>
+    <string name="uitlegStap">Beschrijf de stap:</string>
+    <string name="naamStap">Geef de stap een naam:</string>
     <string name="stapNummer">De hoeveelste stap is dit?</string>
+    <string name="tipBijNummer">Indien je dit vak leeg laat of de waarde 0 geeft, dan wordt het automatisch de laatste stap.</string>
     <string name="image">Voeg een foto toe</string>
     <string name="kiesImage">Kies een foto</string>
     <string name="video">Voeg video toe</string>

@@ -122,11 +122,11 @@ class ModifyStapViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
         }
     }
 
-    fun addUploadRecordToDb(uri: String): Task<DocumentReference> {
-        return firestoreRepository.addUploadRecordToDb(uri, stapId.toString())
+    fun addUploadRecordToDb(uri: String, naam: String, altText: String): Task<DocumentReference> {
+        return firestoreRepository.addUploadRecordToDb(uri, stapId.toString(), naam, altText)
     }
 
-    fun addUploadVidRecordToDb(uri: String): Task<DocumentReference> {
-        return firestoreRepository.addUploadVidRecordToDb(uri, stapId.toString())
+    fun addUploadVidRecordToDb(uri: String, naam: String): Task<DocumentReference> {
+        return firestoreRepository.addUploadVidRecordToDb(uri, stapId.toString(), naam)
     }
 }

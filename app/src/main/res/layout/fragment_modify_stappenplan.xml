@@ -18,7 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan">
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan"
+            android:background="@color/colorSecundary">
 
             <LinearLayout style="@style/linearLay1">
 

@@ -2,9 +2,11 @@ package hogent.bachelor.stappenplanappaccessible.ui.modifyStappenplan
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -14,6 +16,7 @@ import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentModifyStappenplanBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import kotlinx.android.synthetic.main.custom_toast.*
 import kotlinx.android.synthetic.main.fragment_modify_stappenplan.*
 import java.lang.Exception
 
@@ -75,16 +78,16 @@ class ModifyStappenplanFragment : Fragment(){
                         var beschrijving = edit_beschrijving.text
 
                         if(naam.isBlank() && beschrijving.isBlank()){
-                            Toast.makeText(requireContext(), "Naam en beschrijving moeten ingevuld zijn!", Toast.LENGTH_SHORT).show()
+                            showToast("Naam en beschrijving moeten ingevuld zijn!")
                         }
                         else if (naam.isBlank()){
-                            Toast.makeText(requireContext(), "Naam moet ingevuld zijn!", Toast.LENGTH_SHORT).show()
+                            showToast("Naam moet ingevuld zijn!")
                         }
                         else if (beschrijving.isBlank()){
-                            Toast.makeText(requireContext(), "Beschrijving moet ingevuld zijn!", Toast.LENGTH_SHORT).show()
+                            showToast("Beschrijving moet ingevuld zijn!")
                         }
                         else if (naam.toString() == plan.naam && beschrijving.toString() == plan.beschrijving){
-                            Toast.makeText(requireContext(), "Wijzig eerst iets aan stappenplan of keer terug", Toast.LENGTH_SHORT).show()
+                            showToast("Wijzig eerst iets aan het stappenplan of keer terug")
                         }
                         else {
                             plan.naam = naam.toString()
@@ -99,6 +102,20 @@ class ModifyStappenplanFragment : Fragment(){
                 }
             }
             true
+        }
+    }
+
+    private fun showToast(text: String){
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast, custom_toast_container)
+        val txt: TextView = layout.findViewById(R.id.toast_text)
+
+        txt.text = text
+        with (Toast(requireContext())) {
+            setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
         }
     }
 }

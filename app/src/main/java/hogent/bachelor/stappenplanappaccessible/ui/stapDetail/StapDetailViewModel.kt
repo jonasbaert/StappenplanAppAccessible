@@ -2,12 +2,14 @@ package hogent.bachelor.stappenplanappaccessible.ui.stapDetail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hogent.bachelor.stappenplanappaccessible.domain.Image
 import hogent.bachelor.stappenplanappaccessible.domain.Stap
 import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
 import hogent.bachelor.stappenplanappaccessible.firestore.FirestoreRepository
 import com.google.firebase.firestore.Query
+import hogent.bachelor.stappenplanappaccessible.domain.Video
 import hogent.bachelor.stappenplanappaccessible.persistence.daos.StappenplanDao
 import hogent.bachelor.stappenplanappaccessible.persistence.repositories.StappenplanRepository
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +32,12 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
 
     private var _images = MutableLiveData<List<Image>>()
     val images : MutableLiveData<List<Image>> = _images
+
+    private val _navigateToImageDetail = MutableLiveData<Image>()
+    val navigateToImageDetail: LiveData<Image> get() = _navigateToImageDetail
+
+    private val _navigateToVideoDetail = MutableLiveData<Video>()
+    val navigateToVideoDetail: LiveData<Video> get() = _navigateToVideoDetail
 
     val numberAndName : String = stap.volgnummer.toString() + ". " + stap.stapNaam
     private var stapId = stap.id
@@ -71,5 +79,21 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
                 e.printStackTrace()
             }
         }
+    }
+
+    fun onImageClicked(image: Image) {
+        _navigateToImageDetail.value = image
+    }
+
+    fun onImageNavigated(){
+        _navigateToImageDetail.value = null
+    }
+
+    fun onVideoClicked(video: Video){
+        _navigateToVideoDetail.value = video
+    }
+
+    fun onVideoNavigated(){
+        _navigateToVideoDetail.value = null
     }
 }
