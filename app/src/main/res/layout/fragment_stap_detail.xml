@@ -82,7 +82,7 @@
             app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_nav" />
+            app:menu="@menu/menu_bottom_nav_stap" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

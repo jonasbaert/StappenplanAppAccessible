@@ -4,12 +4,19 @@
     tools:context="hogent.bachelor.stappenplanappaccessible.MainActivity">
     <item
         android:id="@+id/action_back"
-        android:icon="@drawable/ic_arrow_back_white_24dp"
         android:title="@string/terug"
+        android:icon="@drawable/ic_arrow_back_white_24dp"
         android:contentDescription="@string/back_to"/>
 
     <item
+        android:id="@+id/action_edit"
+        android:title="@string/edit"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:contentDescription="@string/wijzig_stap" />
+
+    <item
         android:id="@+id/action_remove"
+        android:title="@string/verwijder_stap_title"
         android:icon="@drawable/ic_delete_white_24dp"
-        android:title="@string/delete" />
+        android:contentDescription="@string/verwijder_stap" />
 </menu>

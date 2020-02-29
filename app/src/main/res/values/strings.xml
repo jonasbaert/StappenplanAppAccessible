@@ -36,5 +36,17 @@
     <string name="reset_stappen">Reset de aangevinkte stappen</string>
     <string name="nieuwe_stap">Maak een nieuwe stap aan</string>
     <string name="wijzig">Ga naar het scherm om zaken aan te passen</string>
+    <string name="wijzig_stap">Ga naar het scherm om de stap aan te passen</string>
+    <string name="verwijder_stap">Verwijder deze stap</string>
+    <string name="verwijder_stap_title">Verwijder stap</string>
+    <string name="wijzig_stappenplan">Wijzig dit stappenplan</string>
+    <string name="verwijder_stappenplan_title">Verwijder stappenplan</string>
+    <string name="verwijder_stappenplan">Verwijder dit stappenplan</string>
+    <string name="delete_image">Verwijder deze afbeelding</string>
+    <string name="delete_image_title">Verwijder</string>
+    <string name="delete_video_title">Verwijder video</string>
+    <string name="delete_video">Verwijder deze video</string>
+    <string name="annuleer">Annuleer</string>
+    <string name="verwijder">Verwijder</string>
 
 </resources>

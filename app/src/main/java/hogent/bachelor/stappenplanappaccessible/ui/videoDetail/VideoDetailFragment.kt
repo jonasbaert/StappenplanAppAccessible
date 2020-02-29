@@ -1,12 +1,17 @@
 package hogent.bachelor.stappenplanappaccessible.ui.videoDetail
 
+import android.app.Dialog
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.MediaController
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -26,6 +31,8 @@ class VideoDetailFragment : Fragment(){
 
     private lateinit var viewModel: VideoDetailViewModel
 
+    private lateinit var video: Video
+
     private var mediaController: MediaController? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,7 +40,7 @@ class VideoDetailFragment : Fragment(){
             .inflate(inflater, R.layout.fragment_video, container, false)
 
         val app = requireNotNull(this.activity).application
-        val video = VideoDetailFragmentArgs.fromBundle(arguments!!).video
+        video = VideoDetailFragmentArgs.fromBundle(arguments!!).video
 
         val viewModelFactory = VideoDetailViewModelFactory(video, app)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
@@ -67,10 +74,34 @@ class VideoDetailFragment : Fragment(){
             when (item.itemId) {
                 R.id.action_back -> this.findNavController().popBackStack()
                 R.id.action_remove -> {
-
+                    showDialog()
                 }
             }
             true
         }
+    }
+
+    private fun showDialog(){
+        var dialog : Dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog)
+        dialog.setTitle("Weet je zeker dat je deze video wilt verwijderen?")
+        var text = dialog.findViewById<TextView>(R.id.dialog_text)
+        text.text = "Als je op verwijderen drukt, dan wordt de video met naam " + video.naam + " definitief verwijderd..."
+        var image = dialog.findViewById<ImageView>(R.id.dialog_image)
+        image.setImageResource(R.drawable.ic_delete_white_24dp)
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+        var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer)
+
+        okButton.setOnClickListener {
+            // Verwijder
+
+            dialog.dismiss()
+        }
+
+        annuleerButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }
