@@ -3,18 +3,23 @@ package hogent.bachelor.stappenplanappaccessible.ui.videoDetail
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentVideoBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Video
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailFragmentArgs
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailViewModel
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailViewModelFactory
+import hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail.StappenplanDetailFragmentDirections
+import kotlinx.android.synthetic.main.fragment_stappenplan_detail.*
+import kotlinx.android.synthetic.main.fragment_video.*
 
 class VideoDetailFragment : Fragment(){
     private val TAG = "VIDEO_DETAIL_FRAGMENT"
@@ -56,4 +61,16 @@ class VideoDetailFragment : Fragment(){
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        bottom_navigation_video.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_back -> this.findNavController().popBackStack()
+                R.id.action_remove -> {
+
+                }
+            }
+            true
+        }
+    }
 }

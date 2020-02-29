@@ -4,9 +4,9 @@
     <string name="stappen">Stappen</string>
     <string name="naamStappenplan">Naam van stappenplan</string>
     <string name="beschrijvingStappenplan">Beschrijving</string>
-    <string name="terug">Back</string>
-    <string name="bevestig">OK</string>
-    <string name="edit">Edit</string>
+    <string name="terug">Terug</string>
+    <string name="bevestig">Bewaar</string>
+    <string name="edit">Wijzig</string>
     <string name="uitlegStap">Beschrijf de stap:</string>
     <string name="naamStap">Geef de stap een naam:</string>
     <string name="stapNummer">De hoeveelste stap is dit?</string>
@@ -30,8 +30,11 @@
     <string name="btn_to_create_stappenplan">Creëer een nieuw stappenplan</string>
     <string name="image_content_describtion">Dit is een afbeelding die is toegevoegd als extra middel om een stap succesvol te voltooien</string>
     <string name="back_to">Keer terug naar vorig scherm</string>
-    <string name="accept">Sla de wijzigingen op en keer terug naar vorig scherm</string>
+    <string name="accept">Bewaar de wijzigingen en keer terug naar vorig scherm</string>
     <string name="delete">Verwijder</string>
     <string name="loading">Video is aan het laden</string>
+    <string name="reset_stappen">Reset de aangevinkte stappen</string>
+    <string name="nieuwe_stap">Maak een nieuwe stap aan</string>
+    <string name="wijzig">Ga naar het scherm om zaken aan te passen</string>
 
 </resources>

@@ -38,8 +38,12 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemIconSize="22dp"
+            app:labelVisibilityMode="labeled"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_empty" />
+            app:menu="@menu/menu_bottom_one" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,14 +4,11 @@
     tools:context="hogent.bachelor.stappenplanappaccessible.MainActivity">
     <item
         android:id="@+id/action_back"
-        android:title="@string/terug"
         android:icon="@drawable/ic_arrow_back_white_24dp"
-        android:contentDescription="@string/back_to"/>
+        android:title="@string/terug"
+        android:contentDescription="@string/back_to" />
 
     <item
-        android:id="@+id/action_edit"
-        android:title="@string/edit"
-        android:icon="@drawable/ic_create_black_24dp"
-        android:contentDescription="@string/wijzig"
-        />
+        android:title=""
+        android:enabled="false"/>
 </menu>

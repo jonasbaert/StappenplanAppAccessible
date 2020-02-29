@@ -44,6 +44,8 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom_nav" />
 

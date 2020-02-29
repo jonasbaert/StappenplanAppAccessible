@@ -6,7 +6,7 @@
         android:id="@+id/action_back"
         android:icon="@drawable/ic_arrow_back_white_24dp"
         android:title="@string/terug"
-        android:contentDescription="@string/back_to"/>
+        android:contentDescription="@string/back_to" />
 
     <item
         android:id="@+id/action_accept"

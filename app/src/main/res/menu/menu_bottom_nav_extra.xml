@@ -9,7 +9,7 @@
         android:contentDescription="@string/back_to"/>
 
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/action_remove"
         android:icon="@drawable/ic_delete_white_24dp"
         android:title="@string/delete" />
 </menu>

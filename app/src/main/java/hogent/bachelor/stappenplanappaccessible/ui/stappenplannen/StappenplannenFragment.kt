@@ -18,6 +18,7 @@ import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
 import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp
 import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp.UnderlayButtonClickListener
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import kotlinx.android.synthetic.main.fragment_stappenplannen.*
 
 
 class StappenplannenFragment : Fragment() {
@@ -107,9 +108,22 @@ class StappenplannenFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        bottom_navigation_stappenplannen.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.action_back -> this.findNavController().navigate(
+                    StappenplannenFragmentDirections.actionStappenplannenFragmentToStartFragment()
+                )
+            }
+            true
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar, menu)
         menu.findItem(R.id.action_to_modifyFragment).isVisible = true
+
 
         super.onCreateOptionsMenu(menu, inflater)
     }
