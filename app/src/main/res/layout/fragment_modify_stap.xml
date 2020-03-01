@@ -83,8 +83,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/upload"
-                    android:background="@drawable/my_button_three"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/my_button_two"
                     android:focusable="true"/>
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/video" />
 
                 <TextView
                     android:id="@+id/video_url_preview"
@@ -97,7 +103,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/uploadvid"
-                    android:background="@drawable/my_button_three"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/my_button_two"
                     android:layout_marginBottom="80dp"
                     android:focusable="true" />
 

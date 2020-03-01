@@ -1,5 +1,6 @@
 package hogent.bachelor.stappenplanappaccessible.ui.stapDetail
 
+import android.app.Dialog
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -8,6 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -131,6 +135,7 @@ class StapDetailFragment : Fragment(){
                 R.id.action_edit -> {
                     this.findNavController().navigate(StapDetailFragmentDirections.actionStapDetailFragmentToModifyStapFragment(stap, stappenplan))
                 }
+                R.id.action_remove -> showDialog()
             }
             true
         }
@@ -254,5 +259,31 @@ class StapDetailFragment : Fragment(){
         if(adapterVideo != null){
             adapterVideo!!.stopListening()
         }
+    }
+
+    private fun showDialog(){
+        var dialog : Dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog)
+        dialog.setTitle("Wil je doorgaan met verwijderen?")
+        var text = dialog.findViewById<TextView>(R.id.dialog_text)
+        text.text = "Als je op verwijderen drukt, dan wordt de afbeelding met naam " + stap.stapNaam + " definitief verwijderd..."
+        var image = dialog.findViewById<ImageView>(R.id.dialog_image)
+        image.setImageResource(R.drawable.ic_delete_red_24dp)
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+        var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer)
+
+        okButton.setOnClickListener {
+            // Verwijder
+            dialog.dismiss()
+            viewModel.deleteStap(stap)
+            this.findNavController().popBackStack()
+
+        }
+
+        annuleerButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

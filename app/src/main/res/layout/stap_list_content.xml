@@ -34,7 +34,7 @@
             <LinearLayout
                 style="@style/linearLayList"
                 android:orientation="horizontal"
-                android:background="@drawable/my_button_two"
+                android:background="@drawable/my_button_one"
                 android:layout_marginLeft="80dp">
 
                 <TextView

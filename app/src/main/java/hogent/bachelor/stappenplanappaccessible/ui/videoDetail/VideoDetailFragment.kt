@@ -84,11 +84,11 @@ class VideoDetailFragment : Fragment(){
     private fun showDialog(){
         var dialog : Dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.custom_dialog)
-        dialog.setTitle("Weet je zeker dat je deze video wilt verwijderen?")
+        dialog.setTitle("Wil je doorgaan met verwijderen?")
         var text = dialog.findViewById<TextView>(R.id.dialog_text)
-        text.text = "Als je op verwijderen drukt, dan wordt de video met naam " + video.naam + " definitief verwijderd..."
+        text.text = "Als je op verwijderen drukt, dan wordt de video met naam '" + video.naam + "' definitief verwijderd..."
         var image = dialog.findViewById<ImageView>(R.id.dialog_image)
-        image.setImageResource(R.drawable.ic_delete_white_24dp)
+        image.setImageResource(R.drawable.ic_delete_red_24dp)
 
         var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
         var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer)

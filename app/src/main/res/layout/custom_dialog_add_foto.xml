@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/my_button_three"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_image_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:text="@string/image_text_name"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="5dp"
+        android:id="@+id/image_edit_naam"
+        android:contentDescription=""
+        android:focusable="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:text="@string/image_text_alt"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:padding="5dp"
+        android:lines="3"
+        android:minLines="1"
+        android:maxLines="6"
+        android:scrollbars="vertical"
+        android:id="@+id/image_edit_alt"
+        android:contentDescription=""
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/dialog_button_ok"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/doorgaan"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/my_button_two"
+        android:focusable="true"/>
+
+</LinearLayout>

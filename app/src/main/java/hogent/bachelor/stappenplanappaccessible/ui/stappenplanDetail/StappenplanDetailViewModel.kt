@@ -67,11 +67,10 @@ class StappenplanDetailViewModel(stappenplan: Stappenplan, stappenplanDao: Stapp
         }
     }
 
-    //Delete a stap
-    fun deleteStap(stap: Stap){
+    fun changeVolgnummersByDelete(volgnummer: Int){
         coroutineScope.launch {
             try {
-                stappenplanRepository.deleteStap(stap)
+                stappenplanRepository.changeVolgnummersByDelete(volgnummer, stappenplanId)
             }
             catch (e: Exception){
                 e.printStackTrace()
@@ -79,10 +78,14 @@ class StappenplanDetailViewModel(stappenplan: Stappenplan, stappenplanDao: Stapp
         }
     }
 
-    fun changeVolgnummersByDelete(volgnummer: Int){
+    //Delete a stappenplan
+    fun deleteStappenplan(stappenplan: Stappenplan){
+        /*firestoreRepository.deleteStappenplan(stappenplan).addOnFailureListener {
+            Log.e(TAG, "Failed to delete Stappenplen")
+        }*/
         coroutineScope.launch {
             try {
-                stappenplanRepository.changeVolgnummersByDelete(volgnummer, stappenplanId)
+                stappenplanRepository.deleteStappenplan(stappenplan)
             }
             catch (e: Exception){
                 e.printStackTrace()

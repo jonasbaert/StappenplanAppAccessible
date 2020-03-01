@@ -48,5 +48,10 @@
     <string name="delete_video">Verwijder deze video</string>
     <string name="annuleer">Annuleer</string>
     <string name="verwijder">Verwijder</string>
+    <string name="icon">Icoon</string>
+    <string name="doorgaan">Doorgaan</string>
+    <string name="image_text_name">Geef deze afbeelding een naam:</string>
+    <string name="image_text_alt">Geef wat meer uitleg bij de afbeelding:</string>
+    <string name="video_text_name">Geef deze video een naam:</string>
 
 </resources>

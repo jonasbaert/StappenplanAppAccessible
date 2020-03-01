@@ -96,4 +96,16 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
     fun onVideoNavigated(){
         _navigateToVideoDetail.value = null
     }
+
+    //Delete a stap
+    fun deleteStap(stap: Stap){
+        coroutineScope.launch {
+            try {
+                stappenplanRepository.deleteStap(stap)
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }

@@ -1,9 +1,13 @@
 package hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail
 
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -120,10 +124,13 @@ class StappenplanDetailFragment : Fragment(){
                 R.id.action_back -> this.findNavController().navigate(
                     StappenplanDetailFragmentDirections.actionStappenplanDetailFragmentToStartFragment()
                 )
-               R.id.action_edit ->
+                R.id.action_edit ->
                 this.findNavController().navigate(
                     StappenplanDetailFragmentDirections.actionStappenplanDetailFragmentToModifyStappenplanFragment(stappenplan)
                 )
+                R.id.action_remove -> {
+                   showDialog()
+                }
             }
             true
         }
@@ -149,6 +156,31 @@ class StappenplanDetailFragment : Fragment(){
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showDialog(){
+        var dialog : Dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog)
+        dialog.setTitle("Wil je doorgaan met verwijderen?")
+        var text = dialog.findViewById<TextView>(R.id.dialog_text)
+        text.text = "Als je op verwijderen drukt, dan wordt het stappenplan met naam " + stappenplan.naam + " definitief verwijderd..."
+        var image = dialog.findViewById<ImageView>(R.id.dialog_image)
+        image.setImageResource(R.drawable.ic_delete_red_24dp)
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+        var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer)
+
+        okButton.setOnClickListener {
+            // Verwijder
+            dialog.dismiss()
+            viewModel.deleteStappenplan(stappenplan)
+            this.findNavController().popBackStack()
+        }
+
+        annuleerButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
 }

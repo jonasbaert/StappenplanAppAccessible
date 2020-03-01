@@ -1,6 +1,7 @@
 package hogent.bachelor.stappenplanappaccessible.ui.modifyStap
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.opengl.Visibility
@@ -11,9 +12,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -221,7 +220,7 @@ class ModifyStapFragment : Fragment(){
                         filePath
                     )
                     image_preview.setImageBitmap(bitmap)
-                    uploadImage()
+                    showDialogImage()
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
@@ -232,7 +231,7 @@ class ModifyStapFragment : Fragment(){
 
                 filePath2 = data.data
                 video_url_preview.text = filePath2.toString()
-                uploadVideo()
+                showDialogVideo()
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -270,7 +269,7 @@ class ModifyStapFragment : Fragment(){
             }
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(naam: String, altText: String) {
        if(filePath != null){
             progressBar.visibility = View.VISIBLE
             val ref = storageReference?.child("images/" + UUID.randomUUID().toString())
@@ -286,11 +285,11 @@ class ModifyStapFragment : Fragment(){
             })?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                    addUploadRecordToDb(downloadUri.toString(), "Naam van foto", "Een alt tekst bij een foto")
+                    addUploadRecordToDb(downloadUri.toString(), naam, altText)
                     isFotoToegevoegd = true
                     stap.aantalImages = stap.aantalImages + 1
 
-                    progressBar.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
                 } else {
                     // Handle failures
                 }
@@ -302,7 +301,7 @@ class ModifyStapFragment : Fragment(){
         }
     }
 
-    private fun uploadVideo() {
+    private fun uploadVideo(naam: String) {
         if(filePath2 != null){
             progressBar.visibility = View.VISIBLE
             val ref = storageReference?.child("videos/" + UUID.randomUUID().toString())
@@ -318,7 +317,7 @@ class ModifyStapFragment : Fragment(){
             })?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val downloadUri = task.result
-                    addUploadVidRecordToDb(downloadUri.toString(), "Naam van video")
+                    addUploadVidRecordToDb(downloadUri.toString(), naam)
                     isVideoToegevoegd = true
                     stap.aantalVideos = stap.aantalVideos + 1
 
@@ -364,5 +363,55 @@ class ModifyStapFragment : Fragment(){
             view = layout
             show()
         }
+    }
+
+    private fun showDialogVideo(){
+        var dialog : Dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog)
+        var text = dialog.findViewById<TextView>(R.id.dialog_video_text)
+        text.text = "Vul dit in om verder te gaan"
+
+        var editNaam = dialog.findViewById<EditText>(R.id.video_edit_naam)
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+
+        okButton.setOnClickListener {
+            if(!editNaam.toString().isBlank()){
+                dialog.dismiss()
+                uploadVideo(editNaam.toString())
+            }
+            else{
+                showToast("Een video moet steeds een naam hebben!")
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun showDialogImage(){
+        var dialog : Dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog)
+        var text = dialog.findViewById<TextView>(R.id.dialog_image_text)
+        text.text = "Vul dit in om verder te gaan"
+
+        var editNaam = dialog.findViewById<EditText>(R.id.image_edit_naam)
+        var editAlt = dialog.findViewById<EditText>(R.id.image_edit_alt)
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+
+        okButton.setOnClickListener {
+            if(!editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
+                dialog.dismiss()
+                uploadImage(editNaam.toString(), editAlt.toString())
+            }
+            else if (editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
+                showToast("Een afbeelding moet steeds een naam hebben!")
+            }
+            else if (!editNaam.toString().isBlank() && editAlt.toString().isBlank()){
+                showToast("Een afbeelding moet steeds een  hebben!")
+            }
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }
