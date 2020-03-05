@@ -1,14 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="hogent.bachelor.stappenplanappbase.MainActivity">
+    tools:context="hogent.bachelor.stappenplanappaccessible.MainActivity">
     <item
         android:id="@+id/action_back"
+        android:title="@string/terug"
         android:icon="@drawable/ic_arrow_back_white_24dp"
-        android:title="@string/terug" />
+        android:contentDescription="@string/back_to"/>
 
     <item
         android:id="@+id/action_edit"
+        android:title="@string/edit"
         android:icon="@drawable/ic_create_black_24dp"
-        android:title="@string/edit" />
+        android:contentDescription="@string/wijzig_stappenplan"/>
+
+    <item
+        android:id="@+id/action_remove"
+        android:title="@string/verwijder"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:tooltipText="@string/verwijder_stappenplan_title"
+        android:contentDescription="@string/verwijder_stappenplan" />
 </menu>

@@ -6,11 +6,12 @@
     <data>
         <variable
             name="viewModel"
-            type="hogent.bachelor.stappenplanappbase.ui.stappenplanDetail.StappenplanDetailViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail.StappenplanDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/constLay1">
+        style="@style/constLay1"
+        android:background="@color/colorSecundary">
         <TextView
             android:id="@+id/stappenplan_naam"
             style="@style/TitleStyle1"
@@ -43,6 +44,8 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom_nav" />
 

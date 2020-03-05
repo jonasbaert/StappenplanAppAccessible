@@ -1,15 +1,16 @@
 <resources>
-    <string name="app_name">StappenplanAppBase</string>
+    <string name="app_name">StappenplanAppAccessible</string>
     <string name="stappenplannen">Stappenplannen</string>
     <string name="stappen">Stappen</string>
     <string name="naamStappenplan">Naam van stappenplan</string>
     <string name="beschrijvingStappenplan">Beschrijving</string>
-    <string name="terug">Back</string>
-    <string name="bevestig">OK</string>
-    <string name="edit">Edit</string>
-    <string name="uitlegStap">Geef meer uitleg:</string>
-    <string name="naamStap">Beschrijf kort de stap:</string>
+    <string name="terug">Terug</string>
+    <string name="bevestig">Bewaar</string>
+    <string name="edit">Wijzig</string>
+    <string name="uitlegStap">Beschrijf de stap:</string>
+    <string name="naamStap">Geef de stap een naam:</string>
     <string name="stapNummer">De hoeveelste stap is dit?</string>
+    <string name="tipBijNummer">Indien je dit vak leeg laat of de waarde 0 geeft, dan wordt het automatisch de laatste stap.</string>
     <string name="image">Voeg een foto toe</string>
     <string name="kiesImage">Kies een foto</string>
     <string name="video">Voeg video toe</string>
@@ -20,4 +21,37 @@
     <string name="uploadAudio">Upload audio</string>
     <string name="video_text">Video\'s</string>
     <string name="image_text">Afbeeldingen</string>
+    <string name="home">Home</string>
+    <string name="jouw_stappenplannen">Jouw stappenplannen</string>
+    <string name="maak_stappenplan">Creëer een stappenplan</string>
+
+    <!-- Content Description -->
+    <string name="btn_to_stappenplannen">Ga naar jouw lijst van stappenplannen</string>
+    <string name="btn_to_create_stappenplan">Creëer een nieuw stappenplan</string>
+    <string name="image_content_describtion">Dit is een afbeelding die is toegevoegd als extra middel om een stap succesvol te voltooien</string>
+    <string name="back_to">Keer terug naar vorig scherm</string>
+    <string name="accept">Bewaar de wijzigingen en keer terug naar vorig scherm</string>
+    <string name="delete">Verwijder</string>
+    <string name="loading">Video is aan het laden</string>
+    <string name="reset_stappen">Reset de aangevinkte stappen</string>
+    <string name="nieuwe_stap">Maak een nieuwe stap aan</string>
+    <string name="wijzig">Ga naar het scherm om zaken aan te passen</string>
+    <string name="wijzig_stap">Ga naar het scherm om de stap aan te passen</string>
+    <string name="verwijder_stap">Verwijder deze stap</string>
+    <string name="verwijder_stap_title">Verwijder stap</string>
+    <string name="wijzig_stappenplan">Wijzig dit stappenplan</string>
+    <string name="verwijder_stappenplan_title">Verwijder stappenplan</string>
+    <string name="verwijder_stappenplan">Verwijder dit stappenplan</string>
+    <string name="delete_image">Verwijder deze afbeelding</string>
+    <string name="delete_image_title">Verwijder</string>
+    <string name="delete_video_title">Verwijder video</string>
+    <string name="delete_video">Verwijder deze video</string>
+    <string name="annuleer">Annuleer</string>
+    <string name="verwijder">Verwijder</string>
+    <string name="icon">Icoon</string>
+    <string name="doorgaan">Doorgaan</string>
+    <string name="image_text_name">Geef deze afbeelding een naam:</string>
+    <string name="image_text_alt">Geef wat meer uitleg bij de afbeelding:</string>
+    <string name="video_text_name">Geef deze video een naam:</string>
+
 </resources>

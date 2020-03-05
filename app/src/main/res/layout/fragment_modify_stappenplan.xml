@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="hogent.bachelor.stappenplanappbase.ui.modifyStappenplan.ModifyStappenplanViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.modifyStappenplan.ModifyStappenplanViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan">
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan"
+            android:background="@color/colorSecundary">
 
             <LinearLayout style="@style/linearLay1">
 
@@ -58,6 +59,8 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom" />
 

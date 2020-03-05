@@ -2,15 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title=""
+        android:title="@string/reset_stappen"
         android:id="@+id/action_to_resetCheckedStappen"
         android:icon="@drawable/ic_refresh_white_24dp"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:contentDescription="@string/reset_stappen"/>
 
     <item
-        android:title=""
+        android:title="@string/nieuwe_stap"
         android:id="@+id/action_to_modifyFragment"
         android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:contentDescription="@string/nieuwe_stap"/>
 
 </menu>

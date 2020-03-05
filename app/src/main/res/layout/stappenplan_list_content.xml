@@ -6,32 +6,32 @@
     <data>
         <variable
             name="stappenplan"
-            type="hogent.bachelor.stappenplanappbase.domain.Stappenplan" />
+            type="hogent.bachelor.stappenplanappaccessible.domain.Stappenplan" />
         <variable
             name="clickListener"
-            type="hogent.bachelor.stappenplanappbase.ui.start.PlanListener" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.stappenplannen.PlanListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         style="@style/cardView1"
         android:onClick="@{() -> clickListener.onClick(stappenplan)}"
-        app:cardBackgroundColor="@color/colorRed"
         app:cardCornerRadius="4dp"
         android:width="1dp"
         android:color="@color/colorRedAccent">
 
-        <LinearLayout
-            style="@style/linearLayList">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_button_one">
+            <LinearLayout
+                style="@style/linearLayList">
 
-            <TextView
-                android:id="@+id/naam_string"
-                style="@style/ListItems1"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/naam_string"
+                    style="@style/ListItems1"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/beschrijving_string"
-                style="@style/ListItems1" />
-
-        </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 </layout>

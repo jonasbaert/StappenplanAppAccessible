@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="hogent.bachelor.stappenplanappbase.ui.modifyStap.ModifyStapViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.modifyStap.ModifyStapViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +17,7 @@
             android:id="@+id/scroll_view_modify_stap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorSecundary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +35,8 @@
 
                 <EditText
                     android:id="@+id/edit_stap_naam"
-                    style="@style/EditViewStyle1" />
+                    style="@style/EditViewStyle1"
+                    android:focusable="true"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -48,16 +50,20 @@
                     android:lines="6"
                     android:minLines="4"
                     android:maxLines="10"
-                    android:scrollbars="vertical"/>
+                    android:scrollbars="vertical"
+                    android:focusable="true"/>
 
                 <TextView
                     style="@style/TextStyle2"
-                    android:text="@string/stapNummer" />
+                    android:text="@string/stapNummer"
+                    android:tooltipText="@string/tipBijNummer"
+                    android:contentDescription="@string/tipBijNummer"/>
 
                 <EditText
                     android:id="@+id/edit_stap_nummer"
                     android:inputType="number"
-                    style="@style/EditViewStyle1" />
+                    style="@style/EditViewStyle1"
+                    android:focusable="true"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -73,16 +79,18 @@
                     android:scaleType="centerCrop"/>
 
                 <Button
-                    android:id="@+id/btn_choose_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/kiesImage" />
-
-                <Button
                     android:id="@+id/btn_upload_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/upload" />
+                    android:text="@string/upload"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/my_button_two"
+                    android:focusable="true"/>
+
+                <TextView
+                    style="@style/TextStyle2"
+                    android:text="@string/video" />
 
                 <TextView
                     android:id="@+id/video_url_preview"
@@ -91,18 +99,25 @@
                     android:layout_gravity="center" />
 
                 <Button
-                    android:id="@+id/btn_choose_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/kiesVideo"/>
-
-                <Button
                     android:id="@+id/btn_upload_video"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/uploadvid"
-                    android:layout_marginBottom="60dp"/>
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/my_button_two"
+                    android:layout_marginBottom="80dp"
+                    android:focusable="true" />
 
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:tooltipText="Bezig met uploaden..."
+                    android:contentDescription="Bezig met uploaden..."
+                    android:focusable="true"
+                    android:visibility="gone"/>
             </LinearLayout>
         </ScrollView>
 
@@ -114,6 +129,8 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom" />
 

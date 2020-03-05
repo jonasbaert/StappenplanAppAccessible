@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="hogent.bachelor.stappenplanappaccessible.MainActivity">
+    <item
+        android:id="@+id/action_back"
+        android:icon="@drawable/ic_arrow_back_white_24dp"
+        android:title="@string/terug"
+        android:contentDescription="@string/back_to"/>
+
+    <item
+        android:id="@+id/action_remove"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:title="@string/delete_image_title"
+        android:contentDescription="@string/delete_image"/>
+</menu>

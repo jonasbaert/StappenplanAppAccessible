@@ -6,23 +6,32 @@
     <data>
         <variable
             name="image"
-            type="hogent.bachelor.stappenplanappbase.domain.Image" />
+            type="hogent.bachelor.stappenplanappaccessible.domain.Image" />
+        <variable
+            name="clickListener"
+            type="hogent.bachelor.stappenplanappaccessible.ui.stapDetail.ImageListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewStap"
         style="@style/cardView1"
+        android:onClick="@{() -> clickListener.onClick(image)}"
         app:cardCornerRadius="4dp">
 
-        <LinearLayout
-            style="@style/linearLayList"
-            android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_button_one">
+            <LinearLayout
+                style="@style/linearLayList3"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_from_db"/>
+                <TextView
+                    android:id="@+id/image_name"
+                    style="@style/ListItems1"
+                    android:textStyle="bold"/>
 
-        </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 </layout>

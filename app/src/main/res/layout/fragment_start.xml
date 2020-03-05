@@ -7,28 +7,47 @@
 
         <variable
             name="viewModel"
-            type="hogent.bachelor.stappenplanappbase.ui.start.StartViewModel" />
+            type="hogent.bachelor.stappenplanappaccessible.ui.start.StartViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/constLay1">
+        style="@style/constLay1"
+        android:background="@color/colorSecundary">
 
         <TextView
             android:id="@+id/title_of_page"
             style="@style/TitleStyle1"
-            android:text="@string/stappenplannen"
+            android:text="@string/home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button_nav"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/stappenplan_list"
-            style="@style/recyclerViewStyle1"
-            tools:listitem="@layout/stappenplan_list_content"
+        <ScrollView
+            android:id="@+id/button_nav"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_of_page"/>
+            app:layout_constraintTop_toBottomOf="@+id/title_of_page">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btn_to_stappenplannen"
+                    android:text="@string/jouw_stappenplannen"
+                    style="@style/ButtonStyle1"
+                    android:contentDescription="@string/btn_to_stappenplannen" />
+
+                <Button
+                    android:id="@+id/btn_to_create_stappenplan"
+                    android:text="@string/maak_stappenplan"
+                    style="@style/ButtonStyle1"
+                    android:contentDescription="@string/btn_to_create_stappenplan"
+                    android:layout_below="@id/btn_to_stappenplannen"/>
+            </RelativeLayout>
+        </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_start"
@@ -38,6 +57,8 @@
             android:background="@color/colorPrimary"
             app:itemIconTint="@color/colorWhite"
             app:itemTextColor="@color/colorWhite"
+            app:itemTextAppearanceInactive="@style/BottomNavigationView"
+            app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_bottom_empty" />
 
