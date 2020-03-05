@@ -23,7 +23,7 @@ interface StappenplanDao{
     @Query("Update stap SET isGedaan = 'false' WHERE stappenplanId = :stappenplanId")
     fun updateStappenFromStappenplan(stappenplanId: Long)
 
-    @Query("UPDATE Stap SET volgnummer = volgnummer + 1 WHERE stappenplanId = :planId AND volgnummer >= :volgnummer")
+    @Query("UPDATE Stap SET volgnummer = volgnummer + 1 WHERE stappenplanId = :planId AND volgnummer > :volgnummer")
     fun updateStappenWithVolgnummerGreaterThan(volgnummer: Int, planId: Long)
 
     @Query("UPDATE Stap SET volgnummer = volgnummer - 1 WHERE stappenplanId = :planId AND volgnummer <= :volgnummer")

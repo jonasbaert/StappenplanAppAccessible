@@ -158,13 +158,13 @@ class ModifyStapFragment : Fragment(){
                                 var oudVolgnummer = stap.volgnummer
                                 var nieuwVolgnummer = volgnummer.toString().toInt()
 
-                                if (oudVolgnummer == 0 && nieuwVolgnummer > 0) {
-                                    viewModel.changeVolgnummersGreaterThan(nieuwVolgnummer)
-                                    stap.volgnummer = nieuwVolgnummer
-                                } else if (nieuwVolgnummer == 0) {
+                                if (nieuwVolgnummer == 0) {
                                     stap.volgnummer = viewModel.determineNumber()
                                 } else if (nieuwVolgnummer.toString().isBlank()) {
                                     stap.volgnummer = viewModel.determineNumber()
+                                } else if (oudVolgnummer == 0 && nieuwVolgnummer > 0) {
+                                    viewModel.changeVolgnummersGreaterThan(nieuwVolgnummer)
+                                    stap.volgnummer = nieuwVolgnummer
                                 } else if (!viewModel.checkIfAvailable(nieuwVolgnummer)) {
                                     if (oudVolgnummer == 1 && nieuwVolgnummer > 1) {
                                         viewModel.changeVolgnummersBetween(
