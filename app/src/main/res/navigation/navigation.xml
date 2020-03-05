@@ -84,6 +84,9 @@
         <argument
             android:name="image"
             app:argType="hogent.bachelor.stappenplanappaccessible.domain.Image" />
+        <argument
+            android:name="stap"
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stap" />
         <action
             android:id="@+id/action_back_to_stapDetailFragment"
             app:destination="@+id/stapDetailFragment"/>
@@ -96,6 +99,9 @@
         <argument
             android:name="video"
             app:argType="hogent.bachelor.stappenplanappaccessible.domain.Video" />
+        <argument
+            android:name="stap"
+            app:argType="hogent.bachelor.stappenplanappaccessible.domain.Stap" />
         <action
             android:id="@+id/action_back_to_stapDetailFragment"
             app:destination="@+id/stapDetailFragment"/>

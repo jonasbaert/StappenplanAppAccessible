@@ -9,6 +9,7 @@ class DummyDataSource {
         naam = "Aankleden van jezelf",
         beschrijving = "Dit is een stappenplan voor het aankleden van jezelf.",
         isAlreadyInDb = true,
+        stapSize = 3,
         stappen = listOf(
             Stap(
                 id = 111,
@@ -48,6 +49,7 @@ class DummyDataSource {
         naam = "Tafel zetten",
         beschrijving = "Dit is een stappenplan voor het zetten van een tafel.",
         isAlreadyInDb = true,
+        stapSize = 3,
         stappen = listOf(
             Stap(
                 id = 125,

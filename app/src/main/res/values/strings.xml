@@ -53,5 +53,8 @@
     <string name="image_text_name">Geef deze afbeelding een naam:</string>
     <string name="image_text_alt">Geef wat meer uitleg bij de afbeelding:</string>
     <string name="video_text_name">Geef deze video een naam:</string>
+    <string name="fill_in">Vul dit in om verder te gaan</string>
+    <string name="fill_name">Voer een betekenisvolle naam in</string>
+    <string name="fill_description">Geef hier wat meer uitleg bij de afbeelding</string>
 
 </resources>

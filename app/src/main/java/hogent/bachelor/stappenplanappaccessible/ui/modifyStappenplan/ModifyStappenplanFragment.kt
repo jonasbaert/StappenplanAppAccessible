@@ -16,6 +16,7 @@ import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentModifyStappenplanBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import hogent.bachelor.stappenplanappaccessible.utils.extensions.hideKeyboard
 import kotlinx.android.synthetic.main.custom_toast.*
 import kotlinx.android.synthetic.main.fragment_modify_stappenplan.*
 import java.lang.Exception
@@ -95,6 +96,7 @@ class ModifyStappenplanFragment : Fragment(){
                             plan.stappen = emptyList()
                             updateOrAddStappenplan(plan)
                             this.findNavController().navigate(ModifyStappenplanFragmentDirections.actionBackToStartFragment())
+                            hideKeyboard()
                         }
                     }catch (e: Exception){
                         Log.d(TAG, "Exception : " + e.message)

@@ -27,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
+import hogent.bachelor.stappenplanappaccessible.utils.extensions.hideKeyboard
 import kotlinx.android.synthetic.main.custom_toast.*
 import kotlinx.android.synthetic.main.custom_toast_two.*
 import kotlinx.android.synthetic.main.fragment_modify_stap.*
@@ -44,7 +45,6 @@ class ModifyStapFragment : Fragment(){
 
     private val PICK_IMAGE_REQUEST = 1
     private val PICK_VIDEO_REQUEST = 2
-    private val PICK_AUDIO_REQUEST = 3
 
     private var filePath: Uri? = null
     private var filePath2: Uri? = null
@@ -122,68 +122,44 @@ class ModifyStapFragment : Fragment(){
                         var volgnummer = edit_stap_nummer.text
 
                         if (naam.isBlank() && uitleg.isBlank()) {
-
                             showToast("Naam en uitleg moeten ingevuld zijn!")
-
                         } else if (naam.isBlank()) {
-
                             showToast("Naam moet ingevuld zijn")
-
                         } else if (uitleg.isBlank()) {
-
                             showToast("Meer uitleg moet ingevuld zijn")
-
-                        } else if (naam.toString() == stap.stapNaam
-                            && uitleg.toString() == stap.uitleg
-                            && volgnummer.toString() == stap.volgnummer.toString()
-                            && !isFotoToegevoegd && !isVideoToegevoegd) {
-
+                        } else if (naam.toString() == stap.stapNaam && uitleg.toString() == stap.uitleg
+                            && volgnummer.toString() == stap.volgnummer.toString() && !isFotoToegevoegd && !isVideoToegevoegd) {
                             showToast("Wijzig eerst iets aan deze stap of keer terug")
-
                         } else if (volgnummer.toString().toInt() > viewModel.getSize() + 1) {
-
                             showToast("Geef een volgnummer tussen 1 en ${viewModel.getSize() + 1} in.")
-
-                        } else if(naam.toString() != stap.stapNaam
-                            || uitleg.toString() != stap.uitleg
-                            || volgnummer.toString() != stap.volgnummer.toString()
-                            || isFotoToegevoegd
-                            || isVideoToegevoegd) {
+                        } else if(naam.toString() != stap.stapNaam || uitleg.toString() != stap.uitleg || volgnummer.toString() != stap.volgnummer.toString()
+                            || isFotoToegevoegd || isVideoToegevoegd) {
 
                             stap.stapNaam = naam.toString()
                             stap.uitleg = uitleg.toString()
 
-                            if(volgnummer.toString() != stap.volgnummer.toString()
-                                || volgnummer.toString().toInt() == 0
+                            if(volgnummer.toString() != stap.volgnummer.toString() || volgnummer.toString().toInt() == 0
                                 || volgnummer.toString().isBlank()) {
 
                                 var oudVolgnummer = stap.volgnummer
                                 var nieuwVolgnummer = volgnummer.toString().toInt()
 
-                                if (oudVolgnummer == 0 && nieuwVolgnummer > 0) {
-                                    viewModel.changeVolgnummersGreaterThan(nieuwVolgnummer)
-                                    stap.volgnummer = nieuwVolgnummer
-                                } else if (nieuwVolgnummer == 0) {
+                                if (nieuwVolgnummer == 0) {
                                     stap.volgnummer = viewModel.determineNumber()
                                 } else if (nieuwVolgnummer.toString().isBlank()) {
                                     stap.volgnummer = viewModel.determineNumber()
+                                } else if (oudVolgnummer == 0 && nieuwVolgnummer > 0) {
+                                    stap.volgnummer = nieuwVolgnummer
+                                    viewModel.changeVolgnummersGreaterThan(nieuwVolgnummer)
                                 } else if (!viewModel.checkIfAvailable(nieuwVolgnummer)) {
                                     if (oudVolgnummer == 1 && nieuwVolgnummer > 1) {
-                                        viewModel.changeVolgnummersBetween(
-                                            oudVolgnummer,
-                                            nieuwVolgnummer
-                                        )
+                                        viewModel.changeVolgnummersBetween(oudVolgnummer, nieuwVolgnummer)
                                         stap.volgnummer = nieuwVolgnummer
                                     } else if (oudVolgnummer < nieuwVolgnummer) {
-                                        viewModel.changeVolgnummersBetween(
-                                            oudVolgnummer,
-                                            nieuwVolgnummer
-                                        )
+                                        viewModel.changeVolgnummersBetween(oudVolgnummer, nieuwVolgnummer)
                                         stap.volgnummer = nieuwVolgnummer
                                     } else if (oudVolgnummer > nieuwVolgnummer) {
-                                        viewModel.changeVolgnummersBetweenIfSmaller(
-                                            oudVolgnummer,
-                                            nieuwVolgnummer
+                                        viewModel.changeVolgnummersBetweenIfSmaller(oudVolgnummer, nieuwVolgnummer
                                         )
                                         stap.volgnummer = nieuwVolgnummer
                                     }
@@ -196,6 +172,7 @@ class ModifyStapFragment : Fragment(){
                             isFotoToegevoegd = false
                             isVideoToegevoegd = false
                             this.findNavController().navigate(ModifyStapFragmentDirections.actionBackAgainToStappenplanDetailFragment(stappenplan))
+                            hideKeyboard()
                         }
                     }catch (e: Exception){
                         Log.w(TAG, "Exception : " + e.message)
@@ -330,9 +307,6 @@ class ModifyStapFragment : Fragment(){
             }
         }
         else {
-            val inflater = layoutInflater
-            val layout = inflater.inflate(R.layout.custom_toast, custom_toast_container)
-            val txt: TextView = layout.findViewById(R.id.toast_text)
             showToast("Upload een video aub")
         }
     }
@@ -366,12 +340,10 @@ class ModifyStapFragment : Fragment(){
     }
 
     private fun showDialogVideo(){
-        var dialog : Dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.custom_dialog)
-        var text = dialog.findViewById<TextView>(R.id.dialog_video_text)
-        text.text = "Vul dit in om verder te gaan"
+        var dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog_add_video)
 
-        var editNaam = dialog.findViewById<EditText>(R.id.video_edit_naam)
+        var editNaam = dialog.findViewById<EditText>(R.id.video_edit_naam).text
 
         var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
 
@@ -379,23 +351,21 @@ class ModifyStapFragment : Fragment(){
             if(!editNaam.toString().isBlank()){
                 dialog.dismiss()
                 uploadVideo(editNaam.toString())
+                hideKeyboard()
             }
             else{
-                showToast("Een video moet steeds een naam hebben!")
+                showToast("Een video moet steeds een naam hebben")
             }
         }
-
         dialog.show()
     }
 
     private fun showDialogImage(){
-        var dialog : Dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.custom_dialog)
-        var text = dialog.findViewById<TextView>(R.id.dialog_image_text)
-        text.text = "Vul dit in om verder te gaan"
+        var dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.custom_dialog_add_foto)
 
-        var editNaam = dialog.findViewById<EditText>(R.id.image_edit_naam)
-        var editAlt = dialog.findViewById<EditText>(R.id.image_edit_alt)
+        var editNaam = dialog.findViewById<EditText>(R.id.image_edit_naam).text
+        var editAlt = dialog.findViewById<EditText>(R.id.image_edit_alt).text
 
         var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
 
@@ -403,14 +373,14 @@ class ModifyStapFragment : Fragment(){
             if(!editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
                 dialog.dismiss()
                 uploadImage(editNaam.toString(), editAlt.toString())
+                hideKeyboard()
             }
             else if (editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
-                showToast("Een afbeelding moet steeds een naam hebben!")
+                showToast("Een afbeelding moet steeds een naam hebben")
             }
             else if (!editNaam.toString().isBlank() && editAlt.toString().isBlank()){
-                showToast("Een afbeelding moet steeds een  hebben!")
+                showToast("Een afbeelding moet steeds een korte beschrijving hebben")
             }
-            dialog.dismiss()
         }
         dialog.show()
     }

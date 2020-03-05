@@ -67,17 +67,6 @@ class StappenplanDetailViewModel(stappenplan: Stappenplan, stappenplanDao: Stapp
         }
     }
 
-    fun changeVolgnummersByDelete(volgnummer: Int){
-        coroutineScope.launch {
-            try {
-                stappenplanRepository.changeVolgnummersByDelete(volgnummer, stappenplanId)
-            }
-            catch (e: Exception){
-                e.printStackTrace()
-            }
-        }
-    }
-
     //Delete a stappenplan
     fun deleteStappenplan(stappenplan: Stappenplan){
         /*firestoreRepository.deleteStappenplan(stappenplan).addOnFailureListener {

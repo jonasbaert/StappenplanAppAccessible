@@ -1,22 +1,16 @@
 package hogent.bachelor.stappenplanappaccessible.ui.stappenplannen
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentStappenplannenBinding
-import hogent.bachelor.stappenplanappaccessible.databinding.FragmentStartBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
-import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp
-import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp.UnderlayButtonClickListener
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
 import kotlinx.android.synthetic.main.fragment_stappenplannen.*
 
@@ -134,7 +128,7 @@ class StappenplannenFragment : Fragment() {
 
         //Handle item clicks
         if(id == R.id.action_to_modifyFragment){
-            viewModel.onModifyStappenplanClicked(Stappenplan(0, "", "", emptyList(), false))
+            viewModel.onModifyStappenplanClicked(Stappenplan(0, "", "", emptyList(), false, 0))
         }
 
         return super.onOptionsItemSelected(item)

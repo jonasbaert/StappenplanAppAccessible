@@ -1,27 +1,22 @@
 package hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail
 
 import android.app.Dialog
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentStappenplanDetailBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Stap
 import hogent.bachelor.stappenplanappaccessible.domain.Stappenplan
-import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp
-import hogent.bachelor.stappenplanappaccessible.utils.extensions.SwipeHelp.UnderlayButtonClickListener
 import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
 import kotlinx.android.synthetic.main.fragment_stappenplan_detail.*
 

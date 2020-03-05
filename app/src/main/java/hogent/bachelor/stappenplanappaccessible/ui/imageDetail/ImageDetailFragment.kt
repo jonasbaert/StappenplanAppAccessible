@@ -17,6 +17,7 @@ import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentImageBinding
 import hogent.bachelor.stappenplanappaccessible.databinding.ImageListContentBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Image
+import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
 import kotlinx.android.synthetic.main.fragment_image.*
 import kotlinx.android.synthetic.main.fragment_stappenplan_detail.*
 
@@ -33,8 +34,11 @@ class ImageDetailFragment : Fragment() {
 
         val app = requireNotNull(this.activity).application
         image = ImageDetailFragmentArgs.fromBundle(arguments!!).image
+        val stap = ImageDetailFragmentArgs.fromBundle(arguments!!).stap
 
-        val viewModelFactory = ImageDetailViewModelFactory(image, app)
+        val dataSource = StappenplanDatabase.getInstance(app).stappenplanDao
+
+        val viewModelFactory = ImageDetailViewModelFactory(image, stap, dataSource, app)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(ImageDetailViewModel::class.java)
         binding.viewModel = viewModel

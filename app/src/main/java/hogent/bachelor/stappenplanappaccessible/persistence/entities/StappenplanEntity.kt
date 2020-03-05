@@ -9,5 +9,6 @@ data class StappenplanEntity(
     var id: Long,
     var naam: String,
     var beschrijving: String,
-    var isAlreadyInDb: Boolean
+    var isAlreadyInDb: Boolean,
+    var stapSize: Int
 )

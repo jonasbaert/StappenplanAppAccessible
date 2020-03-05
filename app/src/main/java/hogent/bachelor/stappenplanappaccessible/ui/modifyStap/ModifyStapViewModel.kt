@@ -94,18 +94,15 @@ class ModifyStapViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
     }
 
     fun getSize() : Int {
-        var aantalStappen = 0
-        if(stappenplan.value?.stappen != null){
-            aantalStappen = stappenplan.value!!.stappen!!.size
-            Log.d(TAG, "Aantal stappen = $aantalStappen")
-        }
-        return aantalStappen
+        Log.d(TAG, "Aantal stappen = ${stappenplan.value!!.stapSize}")
+        return stappenplan.value!!.stapSize
     }
 
     fun saveNewStap(stap: Stap){
         coroutineScope.launch {
             try {
                 stappenplanRepository.insertStap(stap, planId)
+                stappenplanRepository.updateStapSizeFromStappenplan(stappenplan.value!!.stapSize + 1, planId)
             }catch (e: Exception){
                 e.printStackTrace()
             }

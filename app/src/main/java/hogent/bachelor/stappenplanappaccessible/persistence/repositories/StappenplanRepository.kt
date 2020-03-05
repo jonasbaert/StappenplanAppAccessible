@@ -33,12 +33,17 @@ class StappenplanRepository(private val stappenplanDao: StappenplanDao) {
             }
         }
     }
+
     fun insertStappenplannenWithStappen(stappenplan: Stappenplan){
         stappenplanDao.insertStappenplanWithStappen(stappenplan.stappenplanDomainToDB(), emptyList())
     }
 
     fun updateStappenplan(stappenplan: Stappenplan){
         stappenplanDao.updateStappenplan(stappenplan.naam, stappenplan.beschrijving, stappenplan.id)
+    }
+
+    fun updateStapSizeFromStappenplan(aantal: Int, stappenplanId: Long){
+        stappenplanDao.updateStapSizeFromStappenplan(aantal, stappenplanId)
     }
 
     fun deleteStappenplan(stappenplan: Stappenplan){

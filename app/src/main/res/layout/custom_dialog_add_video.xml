@@ -3,13 +3,15 @@
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:background="@drawable/my_button_three"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/dialog_video_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:text="@string/fill_in"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:paddingRight="10dp"
@@ -18,7 +20,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:text="@string/video_text_name"/>
@@ -26,7 +28,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:padding="5dp"
         android:id="@+id/video_edit_naam"/>
 

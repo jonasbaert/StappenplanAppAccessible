@@ -27,6 +27,9 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
     private val coroutineScope = CoroutineScope(Dispatchers.IO + viewModelJob)
     var stappenplanRepository = StappenplanRepository(stappenplanDao)
 
+    private var _stappenplan = MutableLiveData<Stappenplan>()
+    val stappenplan : MutableLiveData<Stappenplan> = _stappenplan
+
     private var _stap = MutableLiveData<Stap>()
     val stap : MutableLiveData<Stap> = _stap
 
@@ -40,45 +43,21 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
     val navigateToVideoDetail: LiveData<Video> get() = _navigateToVideoDetail
 
     val numberAndName : String = stap.volgnummer.toString() + ". " + stap.stapNaam
+
+    private var stappenplanId = stappenplan.id
     private var stapId = stap.id
-    //private var stappenplanId = stappenplan.id
 
     init {
         _stap.value = stap
+        _stappenplan.value = stappenplan
     }
 
     fun getImageUrlsFromStap(): Query {
         return firestoreRepository.getImageUrlsFromStap(stapId.toString())
     }
 
-    fun deleteImageFromStap(image: Image) {
-        firestoreRepository.deleteImage(image.id)
-    }
-
     fun getVideoFromStap(): Query {
         return firestoreRepository.getVideoUrlFromStap(stapId.toString())
-    }
-
-    fun updateAantalImagesFromStap(aantal: Int){
-        coroutineScope.launch {
-            try {
-                stappenplanRepository.updateAantalImagesFromStap(stapId, aantal)
-            }
-            catch (e: Exception){
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun updateAantalVideosFromStap(aantal: Int){
-        coroutineScope.launch {
-            try {
-                stappenplanRepository.updateAantalVideosFromStap(stapId, aantal)
-            }
-            catch (e: Exception){
-                e.printStackTrace()
-            }
-        }
     }
 
     fun onImageClicked(image: Image) {
@@ -102,10 +81,24 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
         coroutineScope.launch {
             try {
                 stappenplanRepository.deleteStap(stap)
+                stappenplanRepository.updateStapSizeFromStappenplan(stappenplan.value!!.stapSize - 1, stappenplanId)
             }
             catch (e: Exception){
                 e.printStackTrace()
             }
         }
     }
+
+
+    fun changeVolgnummersByDelete(volgnummer: Int){
+        coroutineScope.launch {
+            try {
+                stappenplanRepository.changeVolgnummersByDelete(volgnummer, stappenplanId)
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
 }

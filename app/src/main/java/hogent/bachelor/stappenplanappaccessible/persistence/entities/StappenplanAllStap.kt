@@ -19,6 +19,7 @@ fun StappenplanAllStap.stappenplanEntityToDomain(): Stappenplan {
         naam = stappenplan!!.naam,
         beschrijving = stappenplan!!.beschrijving,
         isAlreadyInDb = stappenplan!!.isAlreadyInDb,
+        stapSize = stappenplan!!.stapSize,
         stappen = stappen.stapEntityToDomain() //One-to-many
     )
 }

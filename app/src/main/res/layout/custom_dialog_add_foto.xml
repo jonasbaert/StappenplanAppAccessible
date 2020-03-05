@@ -3,13 +3,15 @@
     android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:background="@drawable/my_button_three"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/dialog_image_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:text="@string/fill_in"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:textColor="@color/colorPrimaryDark"/>
@@ -17,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:text="@string/image_text_name"/>
@@ -25,16 +27,16 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:padding="5dp"
         android:id="@+id/image_edit_naam"
-        android:contentDescription=""
+        android:contentDescription="@string/fill_name"
         android:focusable="true"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
         android:text="@string/image_text_alt"/>
@@ -42,16 +44,16 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:inputType="textMultiLine"
         android:gravity="top|start"
         android:padding="5dp"
-        android:lines="3"
-        android:minLines="1"
+        android:lines="4"
+        android:minLines="3"
         android:maxLines="6"
         android:scrollbars="vertical"
         android:id="@+id/image_edit_alt"
-        android:contentDescription=""
+        android:contentDescription="@string/fill_description"
         android:focusable="true"/>
 
     <Button

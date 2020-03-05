@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import hogent.bachelor.stappenplanappaccessible.R
 import hogent.bachelor.stappenplanappaccessible.databinding.FragmentVideoBinding
 import hogent.bachelor.stappenplanappaccessible.domain.Video
+import hogent.bachelor.stappenplanappaccessible.persistence.StappenplanDatabase
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailFragmentArgs
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailViewModel
 import hogent.bachelor.stappenplanappaccessible.ui.imageDetail.ImageDetailViewModelFactory
@@ -41,8 +42,11 @@ class VideoDetailFragment : Fragment(){
 
         val app = requireNotNull(this.activity).application
         video = VideoDetailFragmentArgs.fromBundle(arguments!!).video
+        val stap = ImageDetailFragmentArgs.fromBundle(arguments!!).stap
 
-        val viewModelFactory = VideoDetailViewModelFactory(video, app)
+        val dataSource = StappenplanDatabase.getInstance(app).stappenplanDao
+
+        val viewModelFactory = VideoDetailViewModelFactory(video, stap, dataSource, app)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(VideoDetailViewModel::class.java)
         binding.viewModel = viewModel

@@ -41,8 +41,6 @@ class StapDetailFragment : Fragment(){
 
     private var adapterImage: StapDetailImageFirestoreRecyclerAdapter? = null
     private var adapterVideo: StapDetailVideoFirestoreRecyclerAdapter? = null
-    private var firebaseStore : FirebaseStorage? = null
-    private var photoRef : StorageReference? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentStapDetailBinding = DataBindingUtil
@@ -77,7 +75,7 @@ class StapDetailFragment : Fragment(){
             image?.let {
                 this.findNavController().navigate(
                     StapDetailFragmentDirections
-                        .actionStapDetailFragmentToImageDetailFragment(image))
+                        .actionStapDetailFragmentToImageDetailFragment(image, stap))
                     viewModel.onImageNavigated()
 
             }
@@ -105,7 +103,7 @@ class StapDetailFragment : Fragment(){
             video?.let {
                 this.findNavController().navigate(
                     StapDetailFragmentDirections
-                        .actionStapDetailFragmentToVideoDetailFragment(video))
+                        .actionStapDetailFragmentToVideoDetailFragment(video, stap))
                 viewModel.onVideoNavigated()
             }
         })
@@ -141,115 +139,6 @@ class StapDetailFragment : Fragment(){
         }
     }
 
-    /*
-    private fun getItemTouchHelperCallback(): ItemTouchHelper.SimpleCallback {
-        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                viewHolder2: RecyclerView.ViewHolder
-            ): Boolean = false
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDirection: Int) {
-              *//*  val pos = viewHolder.adapterPosition
-                adapterImage!!.notifyItemRemoved(pos)
-                firebaseStore = FirebaseStorage.getInstance()
-                photoRef = firebaseStore!!.getReferenceFromUrl(adapterImage!!.getItem(pos).imageUrl)
-                if(photoRef != null) {
-                    photoRef!!.delete().addOnSuccessListener {
-                        viewModel.updateAantalImagesFromStap(stap.aantalImages - 1)
-                        viewModel.deleteImageFromStap(adapterImage!!.getItem(pos))
-                        Toast.makeText(
-                            requireContext(),
-                            "Succesvol verwijderd uit db",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }.addOnFailureListener {
-                        Toast.makeText(
-                            requireContext(),
-                            "Probleem bij verwijderen uit db",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-                else{
-                    viewModel.deleteImageFromStap(adapterImage!!.getItem(pos))
-                    Toast.makeText(
-                        requireContext(),
-                        "Succesvol verwijderd uit db",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }*//*
-
-            }
-
-            override fun onChildDraw(
-                c: Canvas,
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                dX: Float,
-                dY: Float,
-                actionState: Int,
-                isCurrentlyActive: Boolean
-            ) {
-                var colorBackground = Color.parseColor("#FF3C30")
-                var deleteIcon: Drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_white_24dp)!!
-                val inWidth = deleteIcon.intrinsicWidth
-                val inHeight = deleteIcon.intrinsicHeight
-                val background = ColorDrawable()
-                val itemView = viewHolder.itemView
-                val itemHeight = itemView.bottom - itemView.top
-                val isCanceled = dX == 0f && !isCurrentlyActive
-
-                if (isCanceled) {
-                    clearCanvas(c, itemView.right + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())
-                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    return
-                }
-
-                background.color = colorBackground
-                background.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-                background.draw(c)
-
-                val iconTop = itemView.top + (itemHeight - inHeight) / 2
-                val iconMargin = (itemHeight - inHeight) / 2
-                val (iconLeft, iconRight) = getIconPositionHorizontal(itemView, iconMargin, dX, inWidth)
-                val iconBottom = iconTop + inHeight
-
-                Log.d("Position", "Left: $iconLeft Top: $iconTop Right: $iconRight Bottom: $iconBottom")
-
-                deleteIcon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
-                deleteIcon.draw(c)
-
-                c.restore()
-
-                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-            }
-
-            private fun clearCanvas(c: Canvas?, left: Float, top: Float, right: Float, bottom: Float) {
-                val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
-                c?.drawRect(left, top, right, bottom, clearPaint)
-            }
-
-            private fun getIconPositionHorizontal(itemView: View, iconMargin: Int, dX: Float, inWidth: Int): Pair<Int, Int> {
-                val iconLeft: Int
-                val iconRight: Int
-
-                // swiping from left to right
-                if (dX > 0) {
-                    iconLeft = itemView.left + iconMargin
-                    iconRight = itemView.left + iconMargin + inWidth
-                } else {
-                    iconLeft = itemView.right - iconMargin - inWidth
-                    iconRight = iconLeft + inWidth
-                }
-
-                return Pair(iconLeft, iconRight)
-            }
-        }
-    }
-    */
-
     override fun onStop() {
         super.onStop()
         if(adapterImage != null){
@@ -262,7 +151,7 @@ class StapDetailFragment : Fragment(){
     }
 
     private fun showDialog(){
-        var dialog : Dialog = Dialog(requireContext())
+        var dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.custom_dialog)
         dialog.setTitle("Wil je doorgaan met verwijderen?")
         var text = dialog.findViewById<TextView>(R.id.dialog_text)
@@ -278,7 +167,6 @@ class StapDetailFragment : Fragment(){
             dialog.dismiss()
             viewModel.deleteStap(stap)
             this.findNavController().popBackStack()
-
         }
 
         annuleerButton.setOnClickListener {
