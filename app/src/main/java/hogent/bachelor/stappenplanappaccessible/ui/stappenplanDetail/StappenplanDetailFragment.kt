@@ -62,33 +62,6 @@ class StappenplanDetailFragment : Fragment(){
             }
         })
 
-/*        object : SwipeHelp(activity, binding.stapList, false) {
-            override fun instantiateUnderlayButton(viewHolder: RecyclerView.ViewHolder?, underlayButtons: MutableList<UnderlayButton>?) {
-
-                //adding first button
-                underlayButtons?.add(
-                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_delete_white_24dp),
-                        Color.parseColor("#FF3C30"), 50, 40, 50, 40, Color.parseColor("#ffffff"),
-
-                        UnderlayButtonClickListener { pos: Int ->
-                            //Perform click operation on button1 at given pos
-                            viewModel.changeVolgnummersByDelete(adapter!!.returnItem(pos).volgnummer)
-                            viewModel.deleteStap(adapter!!.returnItem(pos))
-                            adapter!!.notifyItemRemoved(pos)
-                        }
-                    ))
-                underlayButtons?.add(
-                    SwipeHelp.UnderlayButton("", AppCompatResources.getDrawable(requireContext(), R.drawable.ic_create_black_24dp),
-                        Color.parseColor("#FF9502"),  50, 40, 50, 40, Color.parseColor("#ffffff"),
-
-                        UnderlayButtonClickListener { pos: Int ->
-                            //Perform click operation on button2 at given pos
-                            viewModel.onModifyStapClicked(adapter!!.returnItem(pos))
-                        }
-                    ))
-            }
-        }*/
-
         viewModel.navigateToStapDetail.observe(this, Observer { stap ->
             stap?.let {
                 this.findNavController().navigate(

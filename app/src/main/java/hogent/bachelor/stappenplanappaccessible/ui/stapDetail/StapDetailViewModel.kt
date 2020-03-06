@@ -42,7 +42,7 @@ class StapDetailViewModel(stap: Stap, stappenplan: Stappenplan, stappenplanDao: 
     private val _navigateToVideoDetail = MutableLiveData<Video>()
     val navigateToVideoDetail: LiveData<Video> get() = _navigateToVideoDetail
 
-    val numberAndName : String = stap.volgnummer.toString() + ". " + stap.stapNaam
+    val numberAndName : String = "Stap " + stap.volgnummer.toString() + ". " + stap.stapNaam
 
     private var stappenplanId = stappenplan.id
     private var stapId = stap.id

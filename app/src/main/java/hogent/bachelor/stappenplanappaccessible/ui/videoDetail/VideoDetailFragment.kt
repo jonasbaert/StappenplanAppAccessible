@@ -42,7 +42,7 @@ class VideoDetailFragment : Fragment(){
 
         val app = requireNotNull(this.activity).application
         video = VideoDetailFragmentArgs.fromBundle(arguments!!).video
-        val stap = ImageDetailFragmentArgs.fromBundle(arguments!!).stap
+        val stap = VideoDetailFragmentArgs.fromBundle(arguments!!).stap
 
         val dataSource = StappenplanDatabase.getInstance(app).stappenplanDao
 

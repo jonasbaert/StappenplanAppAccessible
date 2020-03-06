@@ -113,8 +113,10 @@ class ModifyStapFragment : Fragment(){
         super.onStart()
         bottom_navigation_modify_stap.setOnNavigationItemSelectedListener {item ->
             when(item.itemId){
-                R.id.action_back ->
+                R.id.action_back -> {
                     this.findNavController().navigate(ModifyStapFragmentDirections.actionBackAgainToStappenplanDetailFragment(stappenplan))
+                    hideKeyboard()
+                }
                 R.id.action_accept -> {
                     try {
                         var naam = edit_stap_naam.text
@@ -130,8 +132,8 @@ class ModifyStapFragment : Fragment(){
                         } else if (naam.toString() == stap.stapNaam && uitleg.toString() == stap.uitleg
                             && volgnummer.toString() == stap.volgnummer.toString() && !isFotoToegevoegd && !isVideoToegevoegd) {
                             showToast("Wijzig eerst iets aan deze stap of keer terug")
-                        } else if (volgnummer.toString().toInt() > viewModel.getSize() + 1) {
-                            showToast("Geef een volgnummer tussen 1 en ${viewModel.getSize() + 1} in.")
+                        } else if (volgnummer.toString().toInt() > viewModel.getSize() + 2) {
+                            showToast("Geef een volgnummer tussen 1 en ${viewModel.getSize() + 2} in.")
                         } else if(naam.toString() != stap.stapNaam || uitleg.toString() != stap.uitleg || volgnummer.toString() != stap.volgnummer.toString()
                             || isFotoToegevoegd || isVideoToegevoegd) {
 

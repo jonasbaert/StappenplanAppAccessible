@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/stappenplan_naam"
             style="@style/TitleStyle1"
-            android:text="@{viewModel.stappenplan.naam}"
+            android:text="@{viewModel.stringStappenplan}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

@@ -30,6 +30,8 @@ class StappenplanDetailViewModel(stappenplan: Stappenplan, stappenplanDao: Stapp
     private var _stappenplan = MutableLiveData<Stappenplan>()
     val stappenplan : MutableLiveData<Stappenplan> = _stappenplan
 
+    val stringStappenplan = "Stappenplan: " + stappenplan.naam
+
     private val _navigateToStapDetail = MutableLiveData<Stap>()
     val navigateToStapDetail: LiveData<Stap> get() = _navigateToStapDetail
 
@@ -69,9 +71,6 @@ class StappenplanDetailViewModel(stappenplan: Stappenplan, stappenplanDao: Stapp
 
     //Delete a stappenplan
     fun deleteStappenplan(stappenplan: Stappenplan){
-        /*firestoreRepository.deleteStappenplan(stappenplan).addOnFailureListener {
-            Log.e(TAG, "Failed to delete Stappenplen")
-        }*/
         coroutineScope.launch {
             try {
                 stappenplanRepository.deleteStappenplan(stappenplan)

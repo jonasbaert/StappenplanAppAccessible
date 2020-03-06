@@ -70,9 +70,11 @@ class ModifyStappenplanFragment : Fragment(){
     override fun onStart() {
         super.onStart()
         bottom_navigation_modify_stappenplan.setOnNavigationItemSelectedListener {item ->
-            when(item.itemId){
-                R.id.action_back -> this.findNavController().navigate(
-                    ModifyStappenplanFragmentDirections.actionBackToStartFragment())
+            when(item.itemId) {
+                R.id.action_back -> {
+                    this.findNavController().navigate(ModifyStappenplanFragmentDirections.actionBackToStartFragment())
+                    hideKeyboard()
+                }
                 R.id.action_accept -> {
                     try {
                         var naam = edit_naam.text
