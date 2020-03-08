@@ -10,7 +10,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/constLay1">
+        style="@style/constLay1"
+        android:focusable="true">
 
 
         <ScrollView
@@ -21,7 +22,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stap">
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stap"
+            android:focusable="true">
 
             <LinearLayout style="@style/linearLay1">
 
@@ -36,7 +38,10 @@
                 <EditText
                     android:id="@+id/edit_stap_naam"
                     style="@style/EditViewStyle1"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:hint="Geef hier een naam"
+                    android:background="@drawable/edit_text_border"
+                    android:contentDescription="@string/add_stap_name"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -50,8 +55,11 @@
                     android:lines="6"
                     android:minLines="4"
                     android:maxLines="10"
+                    android:hint="Geef hier wat uitleg"
                     android:scrollbars="vertical"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:background="@drawable/edit_text_border"
+                    android:contentDescription="@string/add_description"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -63,7 +71,9 @@
                     android:id="@+id/edit_stap_nummer"
                     android:inputType="number"
                     style="@style/EditViewStyle1"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:background="@drawable/edit_text_border"
+                    android:contentDescription="@string/add_volgnummer"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -81,14 +91,15 @@
                 <Button
                     android:id="@+id/btn_upload_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:text="@string/upload"
                     android:textSize="20sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:textColor="@color/colorWhite"
                     android:background="@drawable/my_button_two"
-                    android:focusable="true"/>
+                    android:focusable="true"
+                    android:contentDescription="@string/add_photo"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -103,7 +114,7 @@
                 <Button
                     android:id="@+id/btn_upload_video"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:text="@string/uploadvid"
                     android:textSize="20sp"
                     android:layout_marginLeft="16dp"
@@ -111,7 +122,8 @@
                     android:textColor="@color/colorWhite"
                     android:background="@drawable/my_button_two"
                     android:layout_marginBottom="80dp"
-                    android:focusable="true" />
+                    android:focusable="true"
+                    android:contentDescription="@string/add_video"/>
 
                 <ProgressBar
                     android:id="@+id/progress_bar"

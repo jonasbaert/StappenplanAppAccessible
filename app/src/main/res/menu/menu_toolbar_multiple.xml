@@ -2,17 +2,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="@string/reset_stappen"
-        android:id="@+id/action_to_resetCheckedStappen"
-        android:icon="@drawable/ic_refresh_white_24dp"
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:title="Keuzemenu"
         app:showAsAction="always"
-        android:contentDescription="@string/reset_stappen"/>
+        android:contentDescription="Klik hier om een keuzemenu te openen">
+        <menu>
+            <item
+                android:title="@string/reset_stappen"
+                android:id="@+id/action_to_resetCheckedStappen"
+                android:icon="@drawable/ic_refresh_white_24dp"
+                app:showAsAction="never"
+                android:contentDescription="@string/reset_stappen"/>
 
-    <item
-        android:title="@string/nieuwe_stap"
-        android:id="@+id/action_to_modifyFragment"
-        android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="always"
-        android:contentDescription="@string/nieuwe_stap"/>
+            <item
+                android:title="@string/nieuwe_stap"
+                android:id="@+id/action_to_modifyFragment"
+                android:icon="@drawable/ic_add_white_24dp"
+                app:showAsAction="never"
+                android:contentDescription="@string/nieuwe_stap"/>
+        </menu>
+    </item>
 
 </menu>

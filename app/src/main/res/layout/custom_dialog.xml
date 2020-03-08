@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:background="@drawable/my_button_three"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:focusable="true">
     <ImageView
         android:id="@+id/dialog_image"
         android:layout_width="wrap_content"
@@ -13,38 +14,53 @@
 
     <TextView
         android:id="@+id/dialog_text"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="5dp"
-        android:textColor="@color/colorRedAccentDark"
+        android:textColor="@color/colorRedAccent"
         android:layout_toEndOf="@+id/dialog_image"/>
 
-    <Button
-        android:id="@+id/dialog_button_ok"
-        android:layout_width="160dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/verwijder"
-        android:textSize="20sp"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/my_button_one"
-        android:layout_below="@+id/dialog_text"
-        android:focusable="true"/>
+        android:orientation="vertical"
+        android:layout_below="@+id/dialog_text">
+        <Button
+            android:id="@+id/dialog_button_ok"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/verwijder"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_margin="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/my_button_one"
+            android:focusable="true"
+            android:contentDescription="@string/delete_anyways"/>
 
-    <Button
-        android:id="@+id/dialog_button_annuleer"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/my_button_two"
-        android:textSize="18sp"
-        android:text="@string/annuleer"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/dialog_text"
-        android:layout_toEndOf="@id/dialog_button_ok"
-        android:focusable="true"/>
+        <Button
+            android:id="@+id/dialog_button_annuleer"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/my_button_two"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="@string/annuleer"
+            android:padding="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_margin="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:focusable="true"
+            android:contentDescription="@string/cancel_delete"/>
+    </LinearLayout>
 </RelativeLayout>

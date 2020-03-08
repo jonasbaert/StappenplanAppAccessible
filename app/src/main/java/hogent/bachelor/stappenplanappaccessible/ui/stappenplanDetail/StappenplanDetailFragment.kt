@@ -1,12 +1,19 @@
 package hogent.bachelor.stappenplanappaccessible.ui.stappenplanDetail
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -104,8 +111,23 @@ class StappenplanDetailFragment : Fragment(){
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_toolbar_multiple, menu)
+
+        var menuItem1 = menu.getItem(0).subMenu[0]
+        var s = SpannableString(menuItem1.title)
+        s.setSpan(ForegroundColorSpan(R.color.colorPrimaryDark), 0, s.length, 0)
+        s.setSpan(RelativeSizeSpan(1.4f), 0, s.length, 0)
+        s.setSpan(StyleSpan(Typeface.BOLD), 0, s.length, 0)
+        menuItem1.title = s
+
+        var menuItem2 = menu.getItem(0).subMenu[1]
+        var s2 = SpannableString(menuItem2.title)
+        s2.setSpan(ForegroundColorSpan(R.color.colorPrimaryDark), 0, s2.length, 0)
+        s2.setSpan(RelativeSizeSpan(1.4f), 0, s2.length, 0)
+        s2.setSpan(StyleSpan(Typeface.BOLD), 0, s2.length, 0)
+        menuItem2.title = s2
 
         super.onCreateOptionsMenu(menu, inflater)
     }

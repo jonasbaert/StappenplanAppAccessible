@@ -79,8 +79,32 @@ class ModifyStapFragment : Fragment(){
         }
 
         binding.editStapNaam.setText(stap.stapNaam)
+        binding.editStapNaam.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
+
         binding.editUitleg.setText(stap.uitleg)
-        binding.editStapNummer.setText(stap.volgnummer.toString())
+        binding.editUitleg.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
+
+        var nextVolgnummer = viewModel.getSize() + 1
+        if(stap.volgnummer == 0 || stap.volgnummer.toString().isBlank()) {
+            binding.editStapNummer.setText(nextVolgnummer.toString())
+        }
+        else{
+            binding.editStapNummer.setText(stap.volgnummer.toString())
+        }
+        binding.editStapNummer.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
+
 
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
@@ -344,46 +368,89 @@ class ModifyStapFragment : Fragment(){
     private fun showDialogVideo(){
         var dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.custom_dialog_add_video)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
-        var editNaam = dialog.findViewById<EditText>(R.id.video_edit_naam).text
+        var editNaam = dialog.findViewById<EditText>(R.id.video_edit_naam)
+
+        editNaam.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                hideKeyboard()
+            }
+        }
 
         var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+        var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer_video)
+
+        var errorMessageVideo = dialog.findViewById<TextView>(R.id.error_message_video_dialog)
 
         okButton.setOnClickListener {
-            if(!editNaam.toString().isBlank()){
+            if(!editNaam.text.toString().isBlank()){
+                errorMessageVideo.text = ""
                 dialog.dismiss()
-                uploadVideo(editNaam.toString())
+                uploadVideo(editNaam.text.toString())
                 hideKeyboard()
             }
             else{
-                showToast("Een video moet steeds een naam hebben")
+                errorMessageVideo.text = "* Een video moet een naam hebben"
             }
         }
+        annuleerButton.setOnClickListener {
+            hideKeyboard()
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 
     private fun showDialogImage(){
         var dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.custom_dialog_add_foto)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
-        var editNaam = dialog.findViewById<EditText>(R.id.image_edit_naam).text
-        var editAlt = dialog.findViewById<EditText>(R.id.image_edit_alt).text
+        var editNaam = dialog.findViewById<EditText>(R.id.image_edit_naam)
+        var editAlt = dialog.findViewById<EditText>(R.id.image_edit_alt)
 
-        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
-
-        okButton.setOnClickListener {
-            if(!editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
-                dialog.dismiss()
-                uploadImage(editNaam.toString(), editAlt.toString())
-                hideKeyboard()
-            }
-            else if (editNaam.toString().isBlank() && !editAlt.toString().isBlank()){
-                showToast("Een afbeelding moet steeds een naam hebben")
-            }
-            else if (!editNaam.toString().isBlank() && editAlt.toString().isBlank()){
-                showToast("Een afbeelding moet steeds een korte beschrijving hebben")
+        editNaam.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
             }
         }
+
+        editAlt.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
+
+        var okButton = dialog.findViewById<Button>(R.id.dialog_button_ok)
+        var annuleerButton = dialog.findViewById<Button>(R.id.dialog_button_annuleer_image)
+
+        var errorMessageImage = dialog.findViewById<TextView>(R.id.error_message_image_dialog)
+
+        okButton.setOnClickListener {
+            if(!editNaam.text.toString().isBlank() && !editAlt.text.toString().isBlank()){
+                errorMessageImage.text = ""
+                dialog.dismiss()
+                uploadImage(editNaam.text.toString(), editAlt.text.toString())
+                hideKeyboard()
+            }
+            else if (editNaam.text.toString().isBlank() && !editAlt.text.toString().isBlank()){
+                errorMessageImage.text = "* Een afbeelding heeft verplicht een naam nodig"
+            }
+            else if (!editNaam.text.toString().isBlank() && editAlt.text.toString().isBlank()){
+                errorMessageImage.text = "* Een afbeelding heeft verplicht meer uitleg nodig"
+            }
+            else {
+                errorMessageImage.text = "* De bovenstaande velden zijn verplicht in te vullen"
+            }
+        }
+        annuleerButton.setOnClickListener {
+            hideKeyboard()
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 }

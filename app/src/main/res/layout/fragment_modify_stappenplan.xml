@@ -10,7 +10,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/constLay1">
+        style="@style/constLay1"
+        android:focusable="true">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -19,7 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_modify_stappenplan"
-            android:background="@color/colorSecundary">
+            android:background="@color/colorSecundary"
+            android:focusable="true">
 
             <LinearLayout style="@style/linearLay1">
 
@@ -33,7 +35,10 @@
 
                 <EditText
                     android:id="@+id/edit_naam"
-                    style="@style/EditViewStyle1" />
+                    style="@style/EditViewStyle1"
+                    android:focusable="true"
+                    android:background="@drawable/edit_text_border"
+                    android:contentDescription="@string/add_name"/>
 
                 <TextView
                     style="@style/TextStyle2"
@@ -43,11 +48,14 @@
                     android:id="@+id/edit_beschrijving"
                     style="@style/EditViewStyle1"
                     android:inputType="textMultiLine"
+                    android:background="@drawable/edit_text_border"
                     android:gravity="top|left"
                     android:lines="6"
                     android:minLines="4"
                     android:maxLines="10"
-                    android:scrollbars="vertical"/>
+                    android:focusable="true"
+                    android:scrollbars="vertical"
+                    android:contentDescription="@string/add_description_to_plan"/>
             </LinearLayout>
         </ScrollView>
 

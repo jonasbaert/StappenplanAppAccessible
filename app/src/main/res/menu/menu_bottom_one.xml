@@ -9,6 +9,9 @@
         android:contentDescription="@string/back_to" />
 
     <item
-        android:title=""
-        android:enabled="false"/>
+        android:title="@string/nieuw_stappenplan"
+        android:id="@+id/action_to_modifyFragment"
+        android:icon="@drawable/ic_add_white_24dp"
+        app:showAsAction="always"
+        android:contentDescription="@string/btn_to_create_stappenplan"/>
 </menu>

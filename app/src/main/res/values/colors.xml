@@ -7,6 +7,7 @@
     <color name="colorSecundary">#FFFFC7</color>
     <color name="colorRed">#DD1111</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorLightGrey">#F5F5F5</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRedAccent">#921616</color>
     <color name="colorYellowish">#E6CF08</color>

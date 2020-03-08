@@ -50,8 +50,18 @@ class ModifyStappenplanFragment : Fragment(){
         }
 
         binding.editNaam.setText(plan.naam)
+        binding.editNaam.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
+
         binding.editBeschrijving.setText(plan.beschrijving)
-        Log.d(TAG, "Id = ${plan.id}")
+        binding.editBeschrijving.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                v.hideKeyboard()
+            }
+        }
 
         binding.lifecycleOwner = this
         return binding.root

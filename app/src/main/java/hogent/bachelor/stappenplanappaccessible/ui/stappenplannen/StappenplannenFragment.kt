@@ -109,31 +109,15 @@ class StappenplannenFragment : Fragment() {
                 R.id.action_back -> this.findNavController().navigate(
                     StappenplannenFragmentDirections.actionStappenplannenFragmentToStartFragment()
                 )
+                R.id.action_to_modifyFragment -> this.findNavController().navigate(
+                    StappenplannenFragmentDirections.actionStappenplannenFragmentToModifyStappenplanFragment(
+                        Stappenplan(0, "", "", emptyList(), false, 0)
+                    )
+                )
             }
             true
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_toolbar, menu)
-        menu.findItem(R.id.action_to_modifyFragment).isVisible = true
-
-
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //get item id to handle item clicks
-        val id = item.itemId
-
-        //Handle item clicks
-        if(id == R.id.action_to_modifyFragment){
-            viewModel.onModifyStappenplanClicked(Stappenplan(0, "", "", emptyList(), false, 0))
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
 }
 
 

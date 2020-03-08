@@ -6,7 +6,7 @@
     <string name="beschrijvingStappenplan">Beschrijving</string>
     <string name="terug">Terug</string>
     <string name="bevestig">Bewaar</string>
-    <string name="edit">Wijzig</string>
+    <string name="edit">Wijzig plan</string>
     <string name="uitlegStap">Beschrijf de stap:</string>
     <string name="naamStap">Geef de stap een naam:</string>
     <string name="stapNummer">De hoeveelste stap is dit?</string>
@@ -33,8 +33,8 @@
     <string name="accept">Bewaar de wijzigingen en keer terug naar vorig scherm</string>
     <string name="delete">Verwijder</string>
     <string name="loading">Video is aan het laden</string>
-    <string name="reset_stappen">Reset de aangevinkte stappen</string>
-    <string name="nieuwe_stap">Maak een nieuwe stap aan</string>
+    <string name="reset_stappen">Reset stappen</string>
+    <string name="nieuwe_stap">Nieuwe stap</string>
     <string name="wijzig">Ga naar het scherm om zaken aan te passen</string>
     <string name="wijzig_stap">Ga naar het scherm om de stap aan te passen</string>
     <string name="verwijder_stap">Verwijder deze stap</string>
@@ -47,14 +47,30 @@
     <string name="delete_video_title">Verwijder video</string>
     <string name="delete_video">Verwijder deze video</string>
     <string name="annuleer">Annuleer</string>
-    <string name="verwijder">Verwijder</string>
+    <string name="verwijder">Verwijder plan</string>
     <string name="icon">Icoon</string>
     <string name="doorgaan">Doorgaan</string>
     <string name="image_text_name">Geef deze afbeelding een naam:</string>
-    <string name="image_text_alt">Geef wat meer uitleg bij de afbeelding:</string>
+    <string name="image_text_alt">Geef uitleg over de afbeelding:</string>
     <string name="video_text_name">Geef deze video een naam:</string>
     <string name="fill_in">Vul dit in om verder te gaan</string>
-    <string name="fill_name">Voer een betekenisvolle naam in</string>
-    <string name="fill_description">Geef hier wat meer uitleg bij de afbeelding</string>
+    <string name="fill_name">Geef hier een naam in</string>
+    <string name="fill_description">Geef hier wat uitleg over de afbeelding</string>
+    <string name="all_required">* De bovenstaande velden zijn verplicht in te vullen</string>
+    <string name="all_required_video">* Een video moet een naam hebben</string>
+    <string name="add_volgnummer" >Geef hier het gewenste volgnummer van een stap in. Op deze manier zullen de stappen in een juiste volgorde staan.</string>
+    <string name="add_description">Geef hier wat meer uitleg bij de stap.</string>
+    <string name="add_stap_name">Geef hier de stap een betekenisvolle naam</string>
+    <string name="add_photo">Klik hier om naar je fotogalerij te gaan</string>
+    <string name="add_video">Klik hier om een video te kiezen die je kunt toevoegen aan deze stap</string>
+    <string name="add_description_to_plan">Geef hier wat meer uitleg over dit stappenplan</string>
+    <string name="add_name">Geef hier een betekenisvolle naam aan jouw stappenplan</string>
+    <string name="delete_anyways">Doorgaan met verwijderen</string>
+    <string name="cancel_delete">Annuleer het verwijderen</string>
+    <string name="cancel_add_video">Annuleer en verlaat het scherm om een video toe te voegen</string>
+    <string name="cancel_add_image">Annuleer en verlaat het scherm om een afbeelding toe te voegen</string>
+    <string name="go_add_foto">Doorgaan met het toevoegen van de afbeelding</string>
+    <string name="nieuw_stappenplan">Nieuw plan</string>
+    <string name="edit_stap">Wijzig stap</string>
 
 </resources>

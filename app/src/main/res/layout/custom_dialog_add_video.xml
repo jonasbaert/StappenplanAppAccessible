@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:background="@drawable/my_button_three"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/dialog_video_text"
@@ -14,7 +17,6 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:padding="5dp"
-        android:paddingRight="10dp"
         android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         android:padding="5dp"
         android:text="@string/video_text_name"/>
 
@@ -29,20 +32,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:background="@drawable/edit_text_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:hint="Geef hier een naam in"
         android:padding="5dp"
         android:id="@+id/video_edit_naam"/>
 
+    <TextView
+        android:id="@+id/error_message_video_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorRedAccent"
+        android:textSize="18sp"
+        android:padding="5dp"/>
+
     <Button
         android:id="@+id/dialog_button_ok"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:text="@string/doorgaan"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:padding="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:layout_margin="10dp"
         android:textColor="@color/colorWhite"
         android:background="@drawable/my_button_two"
         android:layout_below="@+id/dialog_text"
         android:focusable="true"/>
+
+    <Button
+        android:id="@+id/dialog_button_annuleer_video"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/my_button_one"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/annuleer"
+        android:padding="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_margin="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:focusable="true"
+        android:contentDescription="@string/cancel_add_video"/>
 
 </LinearLayout>
